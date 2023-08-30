@@ -3,11 +3,12 @@ Desenvolvimento de um projeto que fará o gerenciamento do restaurante universit
 # Objetivos:
 Aprimoramento de funções necessárias para o gerenciamento do Restaurante Universitário.
 
-# Requisitos:
-- *RF01*: - 
-- *RF02*: - 
-- *RF03*: - 
-- *RF04*: - 
-- *RF05*: - 
-- *RF06*: - 
-- *RF07*: - 
+# Requisitos (Iterações):
+>## Iteração 1:
+>- *RF01*: - 
+>- *RF02*: - 
+>- *RF03*: - 
+>- *RF04*: - 
+>- *RF05*: - 
+>- *RF06*: - 
+>- *RF07*: - 
