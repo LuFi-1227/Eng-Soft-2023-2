@@ -15,9 +15,11 @@ Aprimoramento de funções necessárias para o gerenciamento do Restaurante Univ
 
 # Casos de Uso e User Stories
 
-## RF02: - Cadastrar Usuário _ By Luiz Filipe (@LuFi-1227)
+## RF02: - Cadastrar Usuário
 
-## Autor: @LuFi-1227 _ Luiz Filipe de Souza Alves
+### Autor: @LuFi-1227 _ Luiz Filipe de Souza Alves
+
+## Revisor: @Coutinhopmw _ Cássio Coutinho Lima
 
 ### Atores:
 
@@ -98,7 +100,7 @@ Agora iremos contar uma estória de uma persona que é usuário:
 | Meu nome é Leon e como administrador eu quero poder cadastrar, editar e excluir os dados de qualquer usuário com permissão menor que a minha, seja ele comum ou administrativo, assim como a atendente, também quero ter acesso à leitura de dados de usuários para que a administração seja mais estável | Enquanto Administrador, necessito de um login registrado pelo Gerente de TI com permissão suficiente para trabalhar | Certifique-se que o Gerente de TI tenha cadastrado o administrador e que este tenha acesso ao sistema com suas credenciais com permissão mínima para evitar problemas e para cumprir o básico |
 
 ### Tela de edição, exclusão e busca de cadastros
-![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129668645/0f7df900-7bae-46d6-8503-48cdb9cfe814)
+![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129668645/99d4dd89-5e93-45f0-9885-052c3c1331b5)
 
 ### Tela de cadastro de usuários
 ![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129668645/6797e6de-7c80-40e5-95c8-1a715c1f55eb)
