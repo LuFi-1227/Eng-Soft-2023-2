@@ -99,3 +99,6 @@ Persona três, Usuário:
 Epic 	| User Story 	| Critério de aceitação
 | --- | --- | --- |
 Meu nome é Chris e como usuário eu quero poder editar os meus dados cadastrais e alterar minha senha sempre que julgar necessário 	|Enquanto Usuário, necessito de um login registrado pelo administrador |Certifique-se que o administrador tenha cadastrado o usuário e que este tenha acesso ao sistema com suas credenciais e com permissão mínima para editar-las|
+
+## Prótotipos Tela
+https://www.figma.com/file/Xs8d7jgiJpVNu6AKkIhKga/Site-RU_UFT_ENG_SOFT?type=design&node-id=75-14&mode=design&t=phL3zE6fPoPKcoSw-4
