@@ -103,3 +103,55 @@ Agora iremos contar uma estória de uma persona que é usuário:
 ### Tela de cadastro de usuários
 ![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129668645/6797e6de-7c80-40e5-95c8-1a715c1f55eb)
 
+## RF05: - Manipular Saldo _ Rafael
+
+## Autor: @rafaeld74 _ Rafael de Oliveira Ribeiro
+
+## Atores:
+
+Gerente de T.I - insere e edita qualquer registro do banco de dados.
+
+Administrador - insere e edita qualquer registro do banco de dados, exceto aqueles cuja função esteja acima dele.
+
+Atendente - visualiza e recarrega o saldo de qualquer usuário, cobra e libera a passagem do usuário.
+
+Catraca - visualiza o saldo do usuário, cobra e libera a passagem do usuário.
+
+### Descrição Sucinta:
+
+Manipula o saldo dos usuarios no sistema aumentando ou diminuindo o saldo na carteira.
+
+### Pré-Condição:
+
+Os atores devem estar logados no sistema com dados registrados e nível de acesso permitido para alterar os saldos.
+
+### Fluxo Principal:
+
+1. O autor acessa a função de manipulação de saldos no sistema.
+2. O sistema exibe uma lista de clientes com suas carteirinhas e saldos atuais.
+3. O autor seleciona um cliente da lista.
+4. O autor escolhe a operação a ser realizada:
+    1. Adicionar crédito à carteirinha do cliente.
+    2. Deduzir crédito da carteirinha do cliente.
+5. O autor insere o valor da operação.
+6. O sistema verifica se o valor é válido (positivo para adição e não excede o saldo para dedução).
+    1. Se válido, o sistema atualiza o saldo da carteirinha do cliente de acordo com a operação.
+    2. Se inválido, o sistema exibe uma mensagem de erro.
+7. O sistema registra a transação no histórico do cliente.
+8. O sistema exibe uma mensagem de confirmação da operação.
+9. O autor pode escolher realizar outra operação ou sair da função.
+
+### Opções dos Usuários:
+
+| Opção | Descrição | Atalho |
+| --- | --- | --- |
+| Selecionar Cliente | Escolhe o cliente cuja carteirinha será manipulada | Clique |
+| Adicionar Crédito | Adiciona crédito à carteirinha do cliente selecionado | Clique |
+| Deduzir Crédito | Deduz crédito da carteirinha do cliente selecionado | Clique |
+| Confirmar Operação | Confirma a operação de adição ou dedução de crédito | Enter |
+| Sair | Sai da função de manipulação de saldos | Esc |
+
+### Tela de manipular saldos:
+
+![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129432560/c44fa157-4d6d-4ef5-be18-a7999154e9fb)
+
