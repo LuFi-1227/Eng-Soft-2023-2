@@ -74,10 +74,6 @@ Obs.: O processo de exibição de saldo é diferente para cada ator.
 
 ## User Stories
 
-## User Stories
-
-Agora iremos contar uma estória de uma persona que é usuário:
-
 <strong>Persona um, Atendente:<strong>
 | Epic | User Story | Critério de aceitação |
 | --- | --- | --- |
@@ -88,3 +84,5 @@ Agora iremos contar uma estória de uma persona que é usuário:
 | --- | --- | --- |
 | Meu nome é Gabriel, e como Usuário eu preciso ter acesso ao saldo da minha própria conta para controlar meus gastos e saber quando devo recarregar meu cartão | Como Usuário, preciso ter acesso ao saldo da minha conta sempre que eu quiser | Permita que a consulta ao saldo seja feita quando o usuário quiser |
 
+### Protótipos de Telas
+https://www.figma.com/file/Xs8d7jgiJpVNu6AKkIhKga/Site-RU_UFT_ENG_SOFT?type=design&node-id=75-14&mode=design&t=phL3zE6fPoPKcoSw-4
