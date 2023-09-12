@@ -84,5 +84,6 @@ Obs.: O processo de exibição de saldo é diferente para cada ator.
 | --- | --- | --- |
 | Meu nome é Gabriel, e como Usuário eu preciso ter acesso ao saldo da minha própria conta para controlar meus gastos e saber quando devo recarregar meu cartão | Como Usuário, preciso ter acesso ao saldo da minha conta sempre que eu quiser | Permita que a consulta ao saldo seja feita quando o usuário quiser |
 
-### Protótipos de Telas
-https://www.figma.com/file/Xs8d7jgiJpVNu6AKkIhKga/Site-RU_UFT_ENG_SOFT?type=design&node-id=75-14&mode=design&t=phL3zE6fPoPKcoSw-4
+### Tela do Saldo sendo exibido ao usuário
+![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/127569016/9a34b5df-c092-435a-be47-6eec5d499165)
+
