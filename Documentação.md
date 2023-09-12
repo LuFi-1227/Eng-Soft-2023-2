@@ -61,8 +61,6 @@ O ator deve ter efetuado o login no sistema, buscado por um usuário específico
 
 ## User Stories
 
-## User Stories
-
 Agora iremos contar uma estória de uma persona administrador:
 
 <strong>Persona um, Atendente:<strong>
