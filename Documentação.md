@@ -78,23 +78,21 @@ o usuário que está sendo buscado deve estar previamente cadastrado no sistema.
 
 Agora iremos contar uma estória de uma persona que é usuário:
 
-**Persona um, Gerente de TI:**
-
+<strong>Persona um, Gerente de TI:<strong>
 | Epic | User Story | Critério de aceitação |
 | --- | --- | --- |
-| Meu nome é Gustavo e como um Gerente de T.I, eu quero consultar os dados dos usuários no sistema para visualizar e, se necessário, editar todas as informações dos usuários no sistema, independentemente de suas permissões. | Como um Gerente de T.I, desejo consultar os dados dos usuários no sistema para visualizar. | Eu devo ser capaz de fazer login no sistema com minhas credenciais (login e senha).
+| Meu nome é Gustavo e como um Gerente de T.I, eu quero consultar os dados dos usuários no sistema para visualizar e, se necessário, editar todas as informações dos usuários no sistema, independentemente de suas permissões.| Como um Gerente de T.I, desejo consultar os dados dos usuários no sistema para visualizar.| Eu devo ser capaz de fazer login no sistema com minhas credenciais (login e senha).
 O sistema deve verificar se o meu usuário está cadastrado no banco de dados e se tenho permissão para acessar a página de consulta de dados dos usuários.
 Na página de consulta, devo ser capaz de inserir o CPF/CNPJ do usuário que desejo consultar.
-Devo ter a opção de sair da página de consulta, clicando no botão "Sair". |
+Devo ter a opção de sair da página de consulta, clicando no botão "Sair".|
 
-**Persona dois, Administrador:**
-
+<strong>Persona dois, Administrador:<strong>
 | Epic | User Story | Critério de aceitação |
 | --- | --- | --- |
-| Meu nome é João e como um Administrador, eu quero consultar os dados dos usuários no sistema para visualizar e, se necessário, editar as informações dos usuários com níveis de permissão abaixo do meu. | Como um Administrador, desejo consultar os dados dos usuários no sistema para visualizar. | Eu devo ser capaz de fazer login no sistema com minhas credenciais (login e senha).
+| Meu nome é João e como um Administrador, eu quero consultar os dados dos usuários no sistema para visualizar e, se necessário, editar as informações dos usuários com níveis de permissão abaixo do meu.| Como um Administrador, desejo consultar os dados dos usuários no sistema para visualizar.| Eu devo ser capaz de fazer login no sistema com minhas credenciais (login e senha).
 O sistema deve verificar se o meu usuário está cadastrado no banco de dados e se tenho permissão para acessar a página de consulta de dados dos usuários.
 Na página de consulta, devo ser capaz de inserir o CPF/CNPJ do usuário que desejo consultar.
-Devo ter a opção de sair da página de consulta, clicando no botão "Sair". |
+Devo ter a opção de sair da página de consulta, clicando no botão "Sair".|
 
 ### Tela de edição, exclusão e busca de cadastros
 ![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129668645/0f7df900-7bae-46d6-8503-48cdb9cfe814)
