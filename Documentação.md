@@ -107,7 +107,7 @@ Agora iremos contar uma estória de uma persona que é usuário:
 
 ### Autor: @rafaeld74 _ Rafael de Oliveira Ribeiro
 
-## Revisor: Gabryel Marques
+## Revisor: @GabryelMarques _ Gabryel Soares Marques
 
 ## Atores:
 
