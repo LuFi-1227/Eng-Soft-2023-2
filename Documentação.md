@@ -12,3 +12,64 @@ Aprimoramento de funções necessárias para o gerenciamento do Restaurante Univ
 >- *RF05*: - *Manipular saldo* _ Rafael
 >- *RF06*: - *Exibir saldo* _ Luís Felipe
 >- *RF07*: - *Filtragem de dados dos usuários* _ Gabryel
+
+# Casos de Uso e User Stories
+
+## RF07: - Busca de Dados dos Usuários  _ By Gabryel Marques (@GabryelMarques)
+
+## Autor: @GabryelMarques _ Gabryel Soares Marques
+
+### Atores:
+
+Gerente de T.I - insere e edita qualquer registro do banco de dados.
+
+Administrador - insere e edita qualquer registro do banco de dados, exceto aqueles cuja função esteja acima dele.
+
+### Descrição Sucinta:
+
+Consulta no banco de dados as informações dos usuários as exibir.
+
+### Pré-Condição:
+
+Os autores devem ter autorização adequada para acessar o banco de dados e
+
+o usuário que está sendo buscado deve estar previamente cadastrado no sistema.
+
+### Fluxo Principal:
+
+1. O ator deve entrar no banco de dados com login e senha 
+2. O sistema verifica se o ator preencheu corretamente o formulário e:
+    1. Se sim, o sistema vai para o passo 3.
+    2. Senão, o sistema exibe a mensagem ‘Erro ao preencher formulário ‘x’, verifique se preencheu corretamente e tente novamente’.
+3. O sistema verifica se o ator possui cadastro no banco de dados e o seu nível de permissões e:
+    1. Se sim, o sistema exibe a mensagem ‘Logado com sucesso’ e vai para o passo 4.
+    2. Senão, o sistema exibe a mensagem ‘Usuário ou senha não encontrados, tente novamente’.
+4. O sistema redireciona o ator para a página de consulta onde ele insere os dados do usuario buscado, ou caso ele queira sair ele pode clicar no botão ‘sair’.
+    
+    a .  Se for encontrado registro no banco de dados, o sistema exibe as informações .
+    
+    b .  Senão, o sistema exibe a mensagem ‘Não á registro no banco de dados’.
+    
+
+### Campos do Formulário:
+
+| Campo | Obrigatório? | Editável? | Formato |
+| --- | --- | --- | --- |
+|  |  |  |  |
+|  |  |  |  |
+
+### Opções dos Usuários:
+
+| Opção | Descrição | Atalho |
+| --- | --- | --- |
+| Consultar | Faz a pesquisa no banco de dados | Botão ‘Consultar’ |
+| Sair | Sair da pagina de consulta | Botão ‘Sair’ |
+
+### Relatório do Usuário:
+
+| Campo | Descrição | Formato |
+| --- | --- | --- |
+|  |  |  |
+|  |  |  |
+
+### Fluxo Alternativo:
