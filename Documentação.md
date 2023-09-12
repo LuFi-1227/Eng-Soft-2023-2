@@ -105,7 +105,9 @@ Agora iremos contar uma estória de uma persona que é usuário:
 
 ## RF05: - Manipular Saldo _ Rafael
 
-## Autor: @rafaeld74 _ Rafael de Oliveira Ribeiro
+### Autor: @rafaeld74 _ Rafael de Oliveira Ribeiro
+
+## Revisor: Gabryel Marques
 
 ## Atores:
 
@@ -153,5 +155,6 @@ Os atores devem estar logados no sistema com dados registrados e nível de acess
 
 ### Tela de manipular saldos:
 
-![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129432560/c44fa157-4d6d-4ef5-be18-a7999154e9fb)
+![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129432560/72a3b91e-1df6-4952-8328-6798d6829e67)
+
 
