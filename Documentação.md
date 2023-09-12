@@ -25,7 +25,7 @@ Atendente - visualiza e recarrega o saldo de qualquer usuário, cobra e libera a
 
 Catraca - visualiza o saldo do usuário, cobra e libera a passagem do usuário.
 
-Usuário - visualiza saldo, altera os próprios dados cadastrais, exceto aqueles registrados em documentos oficiais.
+Usuário - visualiza o próprio saldo.
 
 ### Descrição Sucinta:
 
@@ -73,3 +73,18 @@ Obs.: O processo de exibição de saldo é diferente para cada ator.
 ### Fluxo Alternativo:
 
 ## User Stories
+
+## User Stories
+
+Agora iremos contar uma estória de uma persona que é usuário:
+
+<strong>Persona um, Atendente:<strong>
+| Epic | User Story | Critério de aceitação |
+| --- | --- | --- |
+| Meu nome é Júlio, e como atendente eu preciso verificar e recarregar o saldo dos usuários. Além disso, preciso ter a autonomia de cobrar e liberar a entrada do usuário caso algum erro ocorra no sistema de catracas do restaurante | Enquanto Atendente, necessito de permissão para consultar e alterar o valor do saldo dos usuários quando necessário | Preciso que o Atendente possa fazer o processo de recarregar, cobrar e liberar a passagem de usuários rapidamente, a fim de evitar filas no restaurante |
+
+<strong>Persona dois, Usuário:<strong>
+| Epic | User Story | Critério de aceitação |
+| --- | --- | --- |
+| Meu nome é Gabriel, e como Usuário eu preciso ter acesso ao saldo da minha própria conta para controlar meus gastos e saber quando devo recarregar meu cartão | Como Usuário, preciso ter acesso ao saldo da minha conta sempre que eu quiser | Permita que a consulta ao saldo seja feita quando o usuário quiser |
+
