@@ -17,7 +17,9 @@ Aprimoramento de funções necessárias para o gerenciamento do Restaurante Univ
 
 ## RF01: - Login_ By Douglas (@XDougSa)
 
-## Autor: @XDougSa _ Douglas Ribeiro Santos de Sá
+### Autor: @XDougSa _ Douglas Ribeiro Santos de Sá
+
+## Revisor: @rafaeld74 _ Rafael de Oliveira Ribeiro
 
 ### Atores:
 
