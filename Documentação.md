@@ -17,7 +17,9 @@ Aprimoramento de funções necessárias para o gerenciamento do Restaurante Univ
 
 ## RF06: - *Exibir saldo* _ By Luís Felipe (@LuisFelipeKrause)
 
-## Autor: @LuisFelipeKrause _ Luís Felipe Krause de Castro
+### Autor: @LuisFelipeKrause _ Luís Felipe Krause de Castro
+
+## Revisor: @XDougSa _ Douglas Ribeiro Santos de Sá
 
 ### Atores:
 
