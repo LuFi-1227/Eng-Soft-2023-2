@@ -19,6 +19,8 @@ Aprimoramento de funções necessárias para o gerenciamento do Restaurante Univ
 
 ## Autor: @GabryelMarques _ Gabryel Soares Marques
 
+## Revisor: @LuisFelipeKrause _ Luis Felipe Krause
+
 ### Atores:
 
 Gerente de T.I - insere e edita qualquer registro do banco de dados.
