@@ -208,6 +208,59 @@ Meu nome é Chris e como usuário eu quero poder editar os meus dados cadastrais
 ## Tela Adm
 ![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/107047839/b928e1c2-f636-4c88-8cd5-4a0e91ed5de8)
  
+## RF05: - Manipular Saldo _ Rafael
+
+### Autor: @rafaeld74 _ Rafael de Oliveira Ribeiro
+
+## Revisor: @GabryelMarques _ Gabryel Soares Marques
+
+## Atores:
+
+Gerente de T.I - insere e edita qualquer registro do banco de dados.
+
+Administrador - insere e edita qualquer registro do banco de dados, exceto aqueles cuja função esteja acima dele.
+
+Atendente - visualiza e recarrega o saldo de qualquer usuário, cobra e libera a passagem do usuário.
+
+Catraca - visualiza o saldo do usuário, cobra e libera a passagem do usuário.
+
+### Descrição Sucinta:
+
+Manipula o saldo dos usuarios no sistema aumentando ou diminuindo o saldo na carteira.
+
+### Pré-Condição:
+
+Os atores devem estar logados no sistema com dados registrados e nível de acesso permitido para alterar os saldos.
+
+### Fluxo Principal:
+
+1. O autor acessa a função de manipulação de saldos no sistema.
+2. O sistema exibe uma lista de clientes com suas carteirinhas e saldos atuais.
+3. O autor seleciona um cliente da lista.
+4. O autor escolhe a operação a ser realizada:
+    1. Adicionar crédito à carteirinha do cliente.
+    2. Deduzir crédito da carteirinha do cliente.
+5. O autor insere o valor da operação.
+6. O sistema verifica se o valor é válido (positivo para adição e não excede o saldo para dedução).
+    1. Se válido, o sistema atualiza o saldo da carteirinha do cliente de acordo com a operação.
+    2. Se inválido, o sistema exibe uma mensagem de erro.
+7. O sistema registra a transação no histórico do cliente.
+8. O sistema exibe uma mensagem de confirmação da operação.
+9. O autor pode escolher realizar outra operação ou sair da função.
+
+### Opções dos Usuários:
+
+| Opção | Descrição | Atalho |
+| --- | --- | --- |
+| Selecionar Cliente | Escolhe o cliente cuja carteirinha será manipulada | Clique |
+| Adicionar Crédito | Adiciona crédito à carteirinha do cliente selecionado | Clique |
+| Deduzir Crédito | Deduz crédito da carteirinha do cliente selecionado | Clique |
+| Confirmar Operação | Confirma a operação de adição ou dedução de crédito | Enter |
+| Sair | Sai da função de manipulação de saldos | Esc |
+
+### Tela de manipular saldos:
+
+![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129432560/72a3b91e-1df6-4952-8328-6798d6829e67)
   
 ## RF06: - *Exibir saldo* _ By Luís Felipe (@LuisFelipeKrause)
 
@@ -341,7 +394,6 @@ o usuário que está sendo buscado deve estar previamente cadastrado no sistema.
 | Campo | Descrição | Formato |
 | --- | --- | --- |
 |  |  |  |
-|  |  |  |
 
 ### Fluxo Alternativo:
 
@@ -360,4 +412,6 @@ Agora iremos contar uma estória de uma persona que é usuário:
 | Meu nome é João e como um Administrador, eu quero consultar os dados dos usuários no sistema para visualizar e, se necessário, editar as informações dos usuários com níveis de permissão abaixo do meu.| Como um Administrador, desejo consultar os dados dos usuários no sistema para visualizar.| Eu devo ser capaz de fazer login no sistema com minhas credenciais (login e senha). O sistema deve verificar se o meu usuário está cadastrado no banco de dados e se tenho permissão para acessar a página de consulta de dados dos usuários. Na página de consulta, devo ser capaz de inserir o CPF/CNPJ do usuário que desejo consultar. Devo ter a opção de sair da página de consulta, clicando no botão "Sair".|
 
 ### Tela de edição, exclusão e busca de cadastros
+
 ![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129668645/0f7df900-7bae-46d6-8503-48cdb9cfe814)
+
