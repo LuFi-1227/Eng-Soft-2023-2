@@ -301,7 +301,8 @@ Meu nome é Chris e como usuário eu quero poder editar os meus dados cadastrais
  
 ## RF04: - *Deleção do usuário* _ By Cássio Coutinho (@Coutinhopmw)
 
-## Autor: @Coutinhopmw _ Cássio Coutinho Lima
+### Autor: @Coutinhopmw _ Cássio Coutinho Lima
+## Revisor: @PHmore _ Patryck Henryck Moreira Silva
 ### Atores:
 
 Administrador - insere e edita qualquer registro do banco de dados, exceto aqueles cuja função esteja acima dele.
