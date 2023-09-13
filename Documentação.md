@@ -24,11 +24,11 @@ Gerente de T.I - insere e edita qualquer registro do banco de dados.
 
 Administrador - insere e edita qualquer registro do banco de dados, exceto aqueles cuja função esteja acima dele.
 
-Usuário (User) - vê e edita registros especificos ao seu nível de permissão, possui o nível de permissão baixa e acesso a dados limitados.
+Usuário - vê e edita registros especificos ao seu nível de permissão, possui o nível de permissão baixa e acesso a dados limitados.
 
 ### Descrição Sucinta:
 
-Usuários podem editar seus próprios dados cadastrair até certa limitação dependendo do nível de permissão. Enquanto usuários com nível de permissão necessária podem editar os dados de somente leitura para os usuário abaixo a seu nível.
+Usuários podem editar seus próprios dados cadastrair até certa limitação dependendo do nível de permissão. Enquanto o atores com nível de permissão necessária podem editar os dados de somente leitura para os usuário abaixo a seu nível.
 
 ### Pré-Condição:
 
@@ -52,7 +52,7 @@ Os atores devem estar logados no sistema com dados registrados. Os atores que de
     1. Se sim, o sistema verifica e modifica os dados existentes no conjunto referente ao nível de acesso do usuário cadastrado e exibe a mensagem: ‘Usuário modificado com sucesso’;
     2. Senão o sistema exibe a mensagem: ‘Campo ‘x’ não está devidamente preenchido, verifique se este foi preenchido corretamente e tente novamente’;
   
-#### Para o User:
+#### Para o Usuário:
 
 1. Caso o ator não tenha o nível de permissão necessário o sistema direciona o ator para sua página pricipal;
 2. O ator aperta em “Alterar informações”, em seguida o sistema exibe na tela do ator uma tabela com os seus dados e os seguintes campos de formulário a serem modificados:
