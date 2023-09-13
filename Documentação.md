@@ -48,20 +48,26 @@ Os atores deverão estar registrados no sistema.
 3. O sistema verifica se o ator consta no banco de dados.
 4. O ator é redirecionado à sua página.
 
+
 ### Campos do Formulário:
 
 | Campo | Obrigatório? | Editável? | Formato |
 | --- | --- | --- | --- |
+
+
 | CPF | Sim | Não | Texto |
 | Senha | Sim | Não | Texto |
+
 
 ### Opções dos Usuários:
 
 | Opção | Descrição | Atalho |
 
+
 | --- | --- | --- |
 | Entrar | efetuar login no sistema | Enter |
 | Esqueci a senha | efetuar a recuperação de senha. | Sem atalho |
+
 
 ### Relatório do Usuário:
 
@@ -71,6 +77,7 @@ Os atores deverão estar registrados no sistema.
 |  |  |  |
 
 ### Fluxo Alternativo:
+
 
 1. O ator clica em ‘Esqueci a senha'.
 2. O sistema redireciona o ator para a tela de redefinição de senha.
@@ -195,6 +202,7 @@ Epic 	| User Story 	| Critério de aceitação
 | --- | --- | --- |
 Meu nome é Leon e como administrador eu quero poder editar os dados de qualquer usuário com permissão menor que a minha, seja ele comum ou administrativo, assim como a atendente |Enquanto Administrador, necessito de um login registrado pelo Gerente de TI com permissão suficiente para trabalhar 	|Certifique-se que o Gerente de TI tenha cadastrado o administrador e que este tenha acesso ao sistema com suas credenciais e com permissão mínima para editar-las e para editar os dados de usuários comuns|
 
+  
 Persona três, Usuário:
 Epic 	| User Story 	| Critério de aceitação
 | --- | --- | --- |
@@ -206,3 +214,80 @@ Meu nome é Chris e como usuário eu quero poder editar os meus dados cadastrais
 
 ## Tela Adm
 ![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/107047839/b928e1c2-f636-4c88-8cd5-4a0e91ed5de8)
+  
+## RF06: - *Exibir saldo* _ By Luís Felipe (@LuisFelipeKrause)
+
+### Autor: @LuisFelipeKrause _ Luís Felipe Krause de Castro
+
+## Revisor: @XDougSa _ Douglas Ribeiro Santos de Sá
+
+### Atores:
+
+Atendente - visualiza e recarrega o saldo de qualquer usuário, cobra e libera a passagem do usuário.
+
+Catraca - visualiza o saldo do usuário, cobra e libera a passagem do usuário.
+
+Usuário - visualiza o próprio saldo.
+
+### Descrição Sucinta:
+
+Exibe o saldo de um usuário específico aos atores.
+
+### Casos de Uso:
+
+### Pré-Condição:
+
+Os atores devem possuir registro no sistema e estar logados para que possam visualizar o saldo de um usuário.
+
+### Fluxo Principal:
+
+Obs.: O processo de exibição de saldo é diferente para cada ator.
+1.  Para o Atendente:
+    1. Acessa a tela de pesquisa e insere o CPF do usuário. 
+    2. Caso o CPF esteja cadastrado, o saldo do usuário será retornado. Caso contrário, uma mensagem “Usuário não encontrado” será exibida.
+2.  Para a Catraca:
+    1. O usuário aproxima seu cartão do leitor integrado à catraca.
+    2. A catraca consulta e exibe o saldo do usuário em seu display.
+3.  Para o Usuário:
+    1. A consulta ao saldo está sempre disponível ao usuário por meio da página de seu perfil no sistema do restaurante universitário.
+    2. O usuário deve pressionar o campo referente ao saldo.
+    3. O saldo é exibido ao usuário.
+
+### Campos do Formulário:
+
+| Campo | Obrigatório? | Editável? | Formato |
+| --- | --- | --- | --- |
+| CPF/CNPJ | Sim | Sim | Texto |
+
+### Opções dos Usuários:
+
+| Opção | Descrição | Atalho |
+| --- | --- | --- |
+| Consultar saldo | Essa opção exibe ao usuário seu saldo | Botão “Consultar saldo” |
+
+### Relatório do Usuário:
+
+| Campo | Descrição | Formato |
+| --- | --- | --- |
+|  |  |  |
+|  |  |  |
+
+### Fluxo Alternativo:
+
+## User Stories
+
+<strong>Persona um, Atendente:<strong>
+| Epic | User Story | Critério de aceitação |
+| --- | --- | --- |
+| Meu nome é Júlio, e como atendente eu preciso verificar e recarregar o saldo dos usuários. Além disso, preciso ter a autonomia de cobrar e liberar a entrada do usuário caso algum erro ocorra no sistema de catracas do restaurante | Enquanto Atendente, necessito de permissão para consultar e alterar o valor do saldo dos usuários quando necessário | Preciso que o Atendente possa fazer o processo de recarregar, cobrar e liberar a passagem de usuários rapidamente, a fim de evitar filas no restaurante |
+
+<strong>Persona dois, Usuário:<strong>
+| Epic | User Story | Critério de aceitação |
+| --- | --- | --- |
+| Meu nome é Gabriel, e como Usuário eu preciso ter acesso ao saldo da minha própria conta para controlar meus gastos e saber quando devo recarregar meu cartão | Como Usuário, preciso ter acesso ao saldo da minha conta sempre que eu quiser | Permita que a consulta ao saldo seja feita quando o usuário quiser |
+
+### Tela do Saldo sendo exibido ao usuário
+![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/127569016/9a34b5df-c092-435a-be47-6eec5d499165)
+
+
+ 
