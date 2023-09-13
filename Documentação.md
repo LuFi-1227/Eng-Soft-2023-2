@@ -1,3 +1,18 @@
+```
+UNIVERSIDADE FEDERAL DO TOCANTINS (UFT) _ CÂMPUS PALMAS
+CURSO DE BACHARELADO EM CIÊNCIAS DA COMPUTAÇÃO
+DISCIPLINA: ENGENHARIA DE SOFTWARE _ PROJETO: RUcoin
+DOCENTE: EDEILSON MILHOMEM DA SILVA
+DISCENTES:
+> Cássio Coutinho Lima
+> Douglas Ribeiro Santos de Sá
+> Gabryel Soares Marques
+> Luís Felipe Krause de Castro
+> Luiz Filipe de Souza Alves
+> Patryck Henryck Moreira Silva
+> Rafael de Oliveira Ribeiro
+```
+
 # Banco Universitário
 Desenvolvimento de um projeto que fará o gerenciamento do restaurante universitário, especificamente no que se concerne ao sistema de créditos. O projeto irá abranger desde o registro do usuário até as atribuições da catraca (que será a responsável por liberar a passagem do usuário ao ambiente alimentar do restaurante).
 # Objetivos:
@@ -7,8 +22,8 @@ Aprimoramento de funções necessárias para o gerenciamento do Restaurante Univ
 >## Iteração 1: De 30/08/23 à 13/09/23
 >- *RF01*: - *Efetuar Login* _ Douglas
 >- *RF02*: - *Cadastrar Usuário* _ Luiz Filipe
->- *RF03*: - *Alteração de dados do usuário* _ Patryck
->- *RF04*: - *Deleção do usuário* _ Cássio
+>- *RF03*: - *Alterar de dados do usuário* _ Patryck
+>- *RF04*: - *Deletar o usuário* _ Cássio
 >- *RF05*: - *Manipular saldo* _ Rafael
 >- *RF06*: - *Exibir saldo* _ Luís Felipe
 >- *RF07*: - *Filtragem de dados dos usuários* _ Gabryel
@@ -189,7 +204,7 @@ Agora iremos contar uma estória de uma persona que é usuário:
 ### Tela de cadastro de usuários
 ![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129668645/6797e6de-7c80-40e5-95c8-1a715c1f55eb)
 
-## RF03: - Alteração de dados do usuário _ By Patryck Henryck Moreira Silva (@PHmore)
+## RF03: - Alterar dados do usuário _ By Patryck Henryck Moreira Silva (@PHmore)
 ### Autor: @PHmore _ Patryck Henryck Moreira Silva
 ## Revisor: @LuFi-1227_Luis Filipe de Souza Alves
 
@@ -298,7 +313,7 @@ Meu nome é Chris e como usuário eu quero poder editar os meus dados cadastrais
 ## Tela Adm
 ![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/107047839/b928e1c2-f636-4c88-8cd5-4a0e91ed5de8)
  
-## RF04: - *Deleção do usuário* _ By Cássio Coutinho (@Coutinhopmw)
+## RF04: - *Deletar o usuário* _ By Cássio Coutinho (@Coutinhopmw)
 
 ### Autor: @Coutinhopmw _ Cássio Coutinho Lima
 ## Revisor: @PHmore _ Patryck Henryck Moreira Silva
