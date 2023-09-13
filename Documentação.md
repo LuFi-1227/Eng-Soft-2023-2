@@ -246,13 +246,12 @@ Os atores devem estar logados no sistema com dados registrados. Os atores que de
 | Senha | Sim | Sim | Texto |
 
 ### Opções dos Usuários:
-
+| --- | --- | --- |
 | Opção | Descrição | Atalho |
 | Confirmar | Confirmar alterações | Enter ou Botão ‘Alterar’ |
 | Cancelar | Cancela a operação  | Esc |
 
 ### Relatório do Usuário:
-
 | --- | --- | --- |
 
 ### Fluxo Alternativo:
