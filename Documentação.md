@@ -13,10 +13,96 @@ Aprimoramento de funções necessárias para o gerenciamento do Restaurante Univ
 >- *RF06*: - *Exibir saldo* _ Luís Felipe
 >- *RF07*: - *Filtragem de dados dos usuários* _ Gabryel
 
-### Casos de Uso e User Stories
-### RF03: - Alteração de dados do usuário _ By Patryck Henryck Moreira Silva (@PHmore)
+# Casos de Uso e User Stories
+
+## RF01: - Login_ By Douglas (@XDougSa)
+
+### Autor: @XDougSa _ Douglas Ribeiro Santos de Sá
+
+## Revisor: @rafaeld74 _ Rafael de Oliveira Ribeiro
+
+### Atores:
+
+Gerente de T.I - insere e edita qualquer registro do banco de dados.
+
+Administrador - insere e edita qualquer registro do banco de dados, exceto aqueles cuja função esteja acima dele.
+
+Atendente - visualiza e recarrega o saldo de qualquer usuário, cobra e libera a passagem do usuário.
+
+Catraca - visualiza o saldo do usuário, cobra e libera a passagem do usuário.
+
+Usuário - visualiza saldo, altera os próprios dados cadastrais, exceto aqueles registrados em documentos oficiais.
+
+### Descrição Sucinta:
+
+Verifica os dados de login e senha fornecidos pelo usuário e dá acesso ou não ao sistema.
+  
+### Pré-Condição:
+
+Os atores deverão estar registrados no sistema.
+
+### Fluxo Principal:
+
+1. O ator digita seu CPF e senha nos campos correspondentes.
+2. Clica em ‘Entrar’ ou aperta a tecla ‘Enter’.
+3. O sistema verifica se o ator consta no banco de dados.
+4. O ator é redirecionado à sua página.
+
+### Campos do Formulário:
+
+| Campo | Obrigatório? | Editável? | Formato |
+| --- | --- | --- | --- |
+| CPF | Sim | Não | Texto |
+| Senha | Sim | Não | Texto |
+
+### Opções dos Usuários:
+
+| Opção | Descrição | Atalho |
+
+| --- | --- | --- |
+| Entrar | efetuar login no sistema | Enter |
+| Esqueci a senha | efetuar a recuperação de senha. | Sem atalho |
+
+### Relatório do Usuário:
+
+| Campo | Descrição | Formato |
+| --- | --- | --- |
+|  |  |  |
+|  |  |  |
+
+### Fluxo Alternativo:
+
+1. O ator clica em ‘Esqueci a senha'.
+2. O sistema redireciona o ator para a tela de redefinição de senha.
+
+## User Stories
+
+<strong>Persona um, Gerente de TI:<strong>
+| Epic | User Story | Critério de aceitação |
+| --- | --- | --- |
+| Meu nome é Pedro e como Gerente de TI eu quero poder fazer login no sistema | Enquanto Gerente de TI, necessito de acesso via login para o cumprimento de minhas responsabilidades e, consequentemente, acesso ao sistema | Certifique-se que o Gerente de TI possa fazer login em sua conta|
+
+<strong>Persona dois, Administrador:<strong>
+| Epic | User Story | Critério de aceitação |
+| --- | --- | --- |
+| Meu nome é Pedro e como Administrador eu quero poder fazer login no sistema | Enquanto Administrador, necessito de acesso via login para o cumprimento de minhas responsabilidades e, consequentemente, acesso ao sistema | Certifique-se que o Administrador possa fazer login em sua conta|
+
+<strong>Persona três, Atendente:<strong>
+| Epic | User Story | Critério de aceitação |
+| --- | --- | --- |
+| Meu nome é Pedro e como Atendente eu quero poder fazer login no sistema | Enquanto Atendente, necessito de acesso via login para o cumprimento de minhas responsabilidades e, consequentemente, acesso ao sistema | Certifique-se que o Atendente possa fazer login em sua conta|
+
+<strong>Persona quatro, Usuário:<strong>
+| Epic | User Story | Critério de aceitação |
+| --- | --- | --- |
+| Meu nome é Pedro e como Usuário eu quero poder fazer login no sistema | Enquanto Usuário, necessito de acesso via login para vizualizar meu saldo, alterar dados, etc. | Certifique-se que o Administrador possa fazer login em sua conta|
+
+### Tela de login
+![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/81888493/a4c10034-489a-437e-b719-a45bff7b37b5)
+
+## RF03: - Alteração de dados do usuário _ By Patryck Henryck Moreira Silva (@PHmore)
 ### Autor: @PHmore _ Patryck Henryck Moreira Silva
-### Revisor: @LuFi-1227_Luis Filipe de Souza Alves
+## Revisor: @LuFi-1227_Luis Filipe de Souza Alves
 
 ## Atores:
 
@@ -51,7 +137,7 @@ Os atores devem estar logados no sistema com dados registrados. Os atores que de
 6. O sistema  verifica se os outros campos de formulário obrigatórios estão preenchidos:
     1. Se sim, o sistema verifica e modifica os dados existentes no conjunto referente ao nível de acesso do usuário cadastrado e exibe a mensagem: ‘Usuário modificado com sucesso’;
     2. Senão o sistema exibe a mensagem: ‘Campo ‘x’ não está devidamente preenchido, verifique se este foi preenchido corretamente e tente novamente’;
-  
+
 #### Para o Usuário:
 
 1. Caso o ator não tenha o nível de permissão necessário o sistema direciona o ator para sua página pricipal;
@@ -96,7 +182,7 @@ Obs: O ator aperta a opção cancelar
     6. Número de Matrícula;
 5. O ator aperta o botão 'Cancelar' ou usa o atalho 'Esc', a operação de edição é cancelada, os dados são mantidos os mesmos;
 6. O ator retorna para a tela de busca caso seja um usuário com permissões caso contrário retorna para a página inicial;
-		
+
 Agora iremos contar uma estória de uma persona que é usuário:
 
 Persona um, Gerente de TI:
@@ -120,4 +206,3 @@ Meu nome é Chris e como usuário eu quero poder editar os meus dados cadastrais
 
 ## Tela Adm
 ![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/107047839/b928e1c2-f636-4c88-8cd5-4a0e91ed5de8)
-
