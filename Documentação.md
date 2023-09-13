@@ -13,15 +13,18 @@ Aprimoramento de funções necessárias para o gerenciamento do Restaurante Univ
 >- *RF06*: - *Exibir saldo* _ Luís Felipe
 >- *RF07*: - *Filtragem de dados dos usuários* _ Gabryel
 
-Casos de Uso e User Stories
-RF03: - Cadastrar Usuário _ By Patryck Henryck Moreira Silva (@PHmore)
-Autor: @PHmore _ Patryck Henryck Moreira Silva
+### Casos de Uso e User Stories
+### RF03: - Alteração de dados do usuário _ By Patryck Henryck Moreira Silva (@PHmore)
+### Autor: @PHmore _ Patryck Henryck Moreira Silva
+### Revisor: @LuFi-1227_Luis Filipe de Souza Alves
 
 ## Atores:
 
 Gerente de T.I - insere e edita qualquer registro do banco de dados.
 
 Administrador - insere e edita qualquer registro do banco de dados, exceto aqueles cuja função esteja acima dele.
+
+Usuário (User) - vê e edita registros especificos ao seu nível de permissão, possui o nível de permissão baixa e acesso a dados limitados.
 
 ### Descrição Sucinta:
 
@@ -33,6 +36,7 @@ Os atores devem estar logados no sistema com dados registrados. Os atores que de
 
 ### Fluxo Principal:
 
+#### Para o Administrador:
 1. O ator acessa a Tela de Login e efetua o login com CPF e senha;
 2. O Sistema verifica se os dados existem no banco de dados e o nível de permissão do ator;
 3. O Sistema redireciona o ator para sua tela após verificação de credenciais;
@@ -43,14 +47,21 @@ Os atores devem estar logados no sistema com dados registrados. Os atores que de
     4. CPF/CNPJ;
     5. Nome;
     6. Número de Matrícula;
-5. O ator preenche os campos de formulário e clica no botão ‘Alterar’, confirmando a alteração dos dados
+5. O ator preenche os campos de formulário e clica no botão ‘Confirmar’ ou o atalho 'Enter', confirmando a alteração dos dados
 6. O sistema  verifica se os outros campos de formulário obrigatórios estão preenchidos:
-    1. Se sim, o sistema verifica e insere os dados existentes no conjunto referente ao nível de acesso do usuário cadastrado e exibe a mensagem: ‘Usuário modificado com sucesso’;
+    1. Se sim, o sistema verifica e modifica os dados existentes no conjunto referente ao nível de acesso do usuário cadastrado e exibe a mensagem: ‘Usuário modificado com sucesso’;
     2. Senão o sistema exibe a mensagem: ‘Campo ‘x’ não está devidamente preenchido, verifique se este foi preenchido corretamente e tente novamente’;
-7. Caso o ator não tenha o nível de permissão necessário o sistema direciona o ator para sua página pricipal;
-8. O ator aperta em “Alterar informações”, em seguida o sistema exibe na tela do ator uma tabela com os seus dados e os seguintes campos de formulário a serem modificados:
+  
+#### Para o User:
+
+1. Caso o ator não tenha o nível de permissão necessário o sistema direciona o ator para sua página pricipal;
+2. O ator aperta em “Alterar informações”, em seguida o sistema exibe na tela do ator uma tabela com os seus dados e os seguintes campos de formulário a serem modificados:
     1. E-mail;
     2. Senha;
+3. O ator aperta em 'Confirmar' ou o atalho 'Enter', confirmando a alteração dos dados
+4. O sistema  verifica se os outros campos de formulário obrigatórios estão preenchidos:
+    1. Se sim, o sistema verifica e modifica os dados existentes no conjunto referente ao nível de acesso do usuário cadastrado e exibe a mensagem: ‘Usuário modificado com sucesso’;
+    2. Senão o sistema exibe a mensagem: ‘Campo ‘x’ não está devidamente preenchido, verifique se este foi preenchido corretamente e tente novamente’;
 
 ### Campos do Formulário:
 
@@ -62,14 +73,16 @@ Os atores devem estar logados no sistema com dados registrados. Os atores que de
 ### Opções dos Usuários:
 
 | Opção | Descrição | Atalho |
-| --- | --- | --- |
-| Cancelar | Confirmar alterações | Enter ou Botão ‘Alterar’ |
+| Confirmar | Confirmar alterações | Enter ou Botão ‘Alterar’ |
+| Cancelar | Cancela a operação  | Esc |
 
 ### Relatório do Usuário:
 
 | --- | --- | --- |
 
 ### Fluxo Alternativo:
+
+Obs: O ator aperta a opção cancelar
 
 1. O ator acessa a Tela de Login e efetua o login com CPF e senha;
 2. O Sistema verifica se os dados existem no banco de dados e o nível de permissão do ator;
@@ -81,7 +94,8 @@ Os atores devem estar logados no sistema com dados registrados. Os atores que de
     4. CPF/CNPJ;
     5. Nome;
     6. Número de Matrícula;
-5. O ator clica o botão “Cancelar”, a operação de edição é cancelada, os dados são mantidos os mesmos e o ator retorna para a tela de busca;
+5. O ator aperta o botão 'Cancelar' ou usa o atalho 'Esc', a operação de edição é cancelada, os dados são mantidos os mesmos;
+6. O ator retorna para a tela de busca caso seja um usuário com permissões caso contrário retorna para a página inicial;
 		
 Agora iremos contar uma estória de uma persona que é usuário:
 
@@ -100,5 +114,10 @@ Epic 	| User Story 	| Critério de aceitação
 | --- | --- | --- |
 Meu nome é Chris e como usuário eu quero poder editar os meus dados cadastrais e alterar minha senha sempre que julgar necessário 	|Enquanto Usuário, necessito de um login registrado pelo administrador |Certifique-se que o administrador tenha cadastrado o usuário e que este tenha acesso ao sistema com suas credenciais e com permissão mínima para editar-las|
 
-## Prótotipos Tela
-https://www.figma.com/file/Xs8d7jgiJpVNu6AKkIhKga/Site-RU_UFT_ENG_SOFT?type=design&node-id=75-14&mode=design&t=phL3zE6fPoPKcoSw-4
+# Prótotipos Tela
+## Tela User
+![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/107047839/af328c71-a519-4182-8741-17152345b5af)
+
+## Tela Adm
+![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/107047839/b928e1c2-f636-4c88-8cd5-4a0e91ed5de8)
+
