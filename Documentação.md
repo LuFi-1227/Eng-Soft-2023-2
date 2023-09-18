@@ -24,9 +24,10 @@ Aprimoramento de funções necessárias para o gerenciamento do Restaurante Univ
 >- *RF02*: - *Cadastrar Usuário* _ Luiz Filipe
 >- *RF03*: - *Alterar de dados do usuário* _ Patryck
 >- *RF04*: - *Deletar o usuário* _ Cássio
->- *RF05*: - *Manipular saldo* _ Rafael
+>- *RF05*: - *Adicionar saldo* _ Rafael
 >- *RF06*: - *Exibir saldo* _ Luís Felipe
 >- *RF07*: - *Filtragem de dados dos usuários* _ Gabryel
+>- *RF08*: - *Diminuir saldo* _ Rafael
 
 # Casos de Uso e User Stories
 
@@ -593,7 +594,7 @@ Agora iremos contar uma estória de uma persona que é usuário:
 
 ![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129668645/0f7df900-7bae-46d6-8503-48cdb9cfe814)
 
-## RF08: - Diminuição do Saldo _ Rafael
+## RF08: - Diminuir Saldo _ Rafael
 
 ### Autor: @rafaeld74 _ Rafael de Oliveira Ribeiro
 
