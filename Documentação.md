@@ -1,3 +1,18 @@
+```
+UNIVERSIDADE FEDERAL DO TOCANTINS (UFT) _ CÂMPUS PALMAS
+CURSO DE BACHARELADO EM CIÊNCIAS DA COMPUTAÇÃO
+DISCIPLINA: ENGENHARIA DE SOFTWARE _ PROJETO: RUcoin
+DOCENTE: EDEILSON MILHOMEM DA SILVA
+DISCENTES:
+> Cássio Coutinho Lima
+> Douglas Ribeiro Santos de Sá
+> Gabryel Soares Marques
+> Luís Felipe Krause de Castro
+> Luiz Filipe de Souza Alves
+> Patryck Henryck Moreira Silva
+> Rafael de Oliveira Ribeiro
+```
+
 # Banco Universitário
 Desenvolvimento de um projeto que fará o gerenciamento do restaurante universitário, especificamente no que se concerne ao sistema de créditos. O projeto irá abranger desde o registro do usuário até as atribuições da catraca (que será a responsável por liberar a passagem do usuário ao ambiente alimentar do restaurante).
 # Objetivos:
@@ -7,11 +22,12 @@ Aprimoramento de funções necessárias para o gerenciamento do Restaurante Univ
 >## Iteração 1: De 30/08/23 à 13/09/23
 >- *RF01*: - *Efetuar Login* _ Douglas
 >- *RF02*: - *Cadastrar Usuário* _ Luiz Filipe
->- *RF03*: - *Alteração de dados do usuário* _ Patryck
->- *RF04*: - *Deleção do usuário* _ Cássio
->- *RF05*: - *Manipular saldo* _ Rafael
+>- *RF03*: - *Alterar de dados do usuário* _ Patryck
+>- *RF04*: - *Deletar o usuário* _ Cássio
+>- *RF05*: - *Adicionar saldo* _ Rafael
 >- *RF06*: - *Exibir saldo* _ Luís Felipe
 >- *RF07*: - *Filtragem de dados dos usuários* _ Gabryel
+>- *RF08*: - *Diminuir saldo* _ Rafael
 
 # Casos de Uso e User Stories
 
@@ -189,7 +205,7 @@ Agora iremos contar uma estória de uma persona que é usuário:
 ### Tela de cadastro de usuários
 ![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129668645/6797e6de-7c80-40e5-95c8-1a715c1f55eb)
 
-## RF03: - Alteração de dados do usuário _ By Patryck Henryck Moreira Silva (@PHmore)
+## RF03: - Alterar dados do usuário _ By Patryck Henryck Moreira Silva (@PHmore)
 ### Autor: @PHmore _ Patryck Henryck Moreira Silva
 ## Revisor: @LuFi-1227_Luis Filipe de Souza Alves
 
@@ -298,7 +314,7 @@ Meu nome é Chris e como usuário eu quero poder editar os meus dados cadastrais
 ## Tela Adm
 ![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/107047839/b928e1c2-f636-4c88-8cd5-4a0e91ed5de8)
  
-## RF04: - *Deleção do usuário* _ By Cássio Coutinho (@Coutinhopmw)
+## RF04: - *Deletar o usuário* _ By Cássio Coutinho (@Coutinhopmw)
 
 ### Autor: @Coutinhopmw _ Cássio Coutinho Lima
 ## Revisor: @PHmore _ Patryck Henryck Moreira Silva
@@ -354,7 +370,7 @@ Agora iremos contar uma estória de uma persona administrador:
 
 ![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/86412433/67afa587-e27a-41ee-8a38-cf9c57626141)
 
-## RF05: - Manipular Saldo _ Rafael
+## RF05: - Adicionar Saldo _ Rafael
 
 ### Autor: @rafaeld74 _ Rafael de Oliveira Ribeiro
 
@@ -372,7 +388,7 @@ Catraca - visualiza o saldo do usuário, cobra e libera a passagem do usuário.
 
 ### Descrição Sucinta:
 
-Manipula o saldo dos usuarios no sistema aumentando ou diminuindo o saldo na carteira.
+Adicionar saldo aos usuarios no sistema aumentando o saldo na carteira.
 
 ### Pré-Condição:
 
@@ -383,12 +399,10 @@ Os atores devem estar logados no sistema com dados registrados e nível de acess
 1. O autor acessa a função de manipulação de saldos no sistema.
 2. O sistema exibe uma lista de clientes com suas carteirinhas e saldos atuais.
 3. O autor seleciona um cliente da lista.
-4. O autor escolhe a operação a ser realizada:
-    1. Adicionar crédito à carteirinha do cliente.
-    2. Deduzir crédito da carteirinha do cliente.
-5. O autor insere o valor da operação.
-6. O sistema verifica se o valor é válido (positivo para adição e não excede o saldo para dedução).
-    1. Se válido, o sistema atualiza o saldo da carteirinha do cliente de acordo com a operação.
+4. O autor escolhe a operação Recarregar:
+5. O autor insere a quatidade de refeições.
+6. O sistema verifica se o valor é válido (positivo).
+    1. Se válido, o sistema aumenta o saldo da carteirinha do cliente.
     2. Se inválido, o sistema exibe uma mensagem de erro.
 7. O sistema registra a transação no histórico do cliente.
 8. O sistema exibe uma mensagem de confirmação da operação.
@@ -400,11 +414,8 @@ Os atores devem estar logados no sistema com dados registrados e nível de acess
 | --- | --- | --- |
 | Selecionar Cliente | Escolhe o cliente cuja carteirinha será manipulada | Clique |
 | Adicionar Crédito | Adiciona crédito à carteirinha do cliente selecionado | Clique |
-| Deduzir Crédito | Deduz crédito da carteirinha do cliente selecionado | Clique |
 | Confirmar Operação | Confirma a operação de adição ou dedução de crédito | Enter |
 | Sair | Sai da função de manipulação de saldos | Esc |
-
-### Fluxo Alternativo:
 
 ## User Stories
 
@@ -582,3 +593,71 @@ Agora iremos contar uma estória de uma persona que é usuário:
 ### Tela de edição, exclusão e busca de cadastros
 
 ![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129668645/0f7df900-7bae-46d6-8503-48cdb9cfe814)
+
+## RF08: - Diminuir Saldo _ Rafael
+
+### Autor: @rafaeld74 _ Rafael de Oliveira Ribeiro
+
+## Atores:
+
+Gerente de T.I - insere e edita qualquer registro do banco de dados.
+
+Administrador - insere e edita qualquer registro do banco de dados, exceto aqueles cuja função esteja acima dele.
+
+Atendente - visualiza e recarrega o saldo de qualquer usuário, cobra e libera a passagem do usuário.
+
+Catraca - visualiza o saldo do usuário, cobra e libera a passagem do usuário.
+
+### Descrição Sucinta:
+
+Diminuir o saldo dos usuarios no sistema diminuindo o saldo na carteira.
+
+### Pré-Condição:
+
+Os atores devem estar logados no sistema com dados registrados e nível de acesso permitido para alterar os saldos.
+
+### Fluxo Principal:
+
+1. O autor acessa a função de manipulação de saldos no sistema.
+2. O sistema exibe uma lista de clientes com suas carteirinhas e saldos atuais.
+3. O autor seleciona um cliente da lista.
+4. O autor escolhe a operação cobrança:
+6. O sistema verifica se o valor é válido (sé ha saldo na carteirinha).
+    1. Se válido, o sistema atualiza o saldo da carteirinha do cliente.
+    2. Se inválido, o sistema exibe uma mensagem de erro.
+7. O sistema registra a transação no histórico do cliente.
+8. O sistema exibe uma mensagem de confirmação da operação.
+9. O autor pode escolher realizar outra operação ou sair da função.
+
+### Opções dos Usuários:
+
+| Opção | Descrição | Atalho |
+| --- | --- | --- |
+| Selecionar Cliente | Escolhe o cliente cuja carteirinha será manipulada | Clique |
+| Deduzir Crédito | Deduz crédito da carteirinha do cliente selecionado | Clique |
+| Confirmar Operação | Confirma a operação de adição ou dedução de crédito | Enter |
+| Sair | Sai da função de manipulação de saldos | Esc |
+
+## User Stories
+
+Agora iremos contar uma estória de uma persona que é usuário:
+
+Persona um, Gerente de TI:
+Epic 	| User Story 	| Critério de aceitação
+| --- | --- | --- |
+Meu nome é César e como Gerente de TI eu quero poder editar qualquer dado de qualquer usuário, seja ele comum ou administrativo dentro da plataforma para que haja melhor controle e administração dos dados e do sistema, fornecendo maior segurança e responsabilidade para os usuários comuns 		| Enquanto Gerente de TI, necessito de um acesso com tal permissão para o cumprimento de minhas responsabilidades e consequentemente, um acesso ao banco de dados 	 	| Certifique-se que o Gerente de TI pode fazer login em sua conta e tenha acesso direto ao banco de dados com uma interface suficientemente limpa e visual para melhor conforto para as vistas|
+
+Persona dois, Administrador:
+Epic 	| User Story 	| Critério de aceitação
+| --- | --- | --- |
+Meu nome é Leon e como administrador eu quero poder editar os dados de qualquer usuário com permissão menor que a minha, seja ele comum ou administrativo, assim como a atendente |Enquanto Administrador, necessito de um login registrado pelo Gerente de TI com permissão suficiente para trabalhar 	|Certifique-se que o Gerente de TI tenha cadastrado o administrador e que este tenha acesso ao sistema com suas credenciais e com permissão mínima para editar-las e para editar os dados de usuários comuns|
+
+Persona três, Atendente/Catraca:
+
+| Epic | User Story | Critério de aceitação |
+| --- | --- | --- |
+| Meu nome é Júlio, e como atendente eu preciso verificar e recarregar o saldo dos usuários. Além disso, preciso ter a autonomia de cobrar e liberar a entrada do usuário caso algum erro ocorra no sistema de catracas do restaurante | Enquanto Atendente, necessito de permissão para consultar e alterar o valor do saldo dos usuários quando necessário | Preciso que o Atendente possa fazer o processo de recarregar, cobrar e liberar a passagem de usuários rapidamente, a fim de evitar filas no restaurante |
+
+### Tela de manipular saldos:
+
+![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129432560/72a3b91e-1df6-4952-8328-6798d6829e67)
