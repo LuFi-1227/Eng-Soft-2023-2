@@ -1,5 +1,3 @@
 <?php
-include("controller/ControlPanel.php");
-require_once "controller/ControlPanel.php";
-$ctrl->InstanciaPaginaInicial();
+header("Location: http://localhost/PHP/ES-RUCOINS/view/PaginaInicial.html");
 ?>
