@@ -46,7 +46,8 @@
                         <th>E-mail</th>
                         <th class="table-icon-width">Permissão</th>
                     </tr>
-                     <?php
+                    <?php
+                    include_once '../controller/teste.php';
                     include_once '../model/Data.php';
                         if(isset($_POST['Search']) && isset($_POST['CPF']) && !empty($_POST['CPF'])){
                             $data = new Data();
@@ -91,5 +92,26 @@
     </footer>
 </body>
 <script src="https://kit.fontawesome.com/4bfe745599.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    function exibe(objeto){
+        newPopup(objeto);
+    }
 
+    function apaga(objeto){
+        document.cookie = escape('id') + "=" + 
+            escape(objeto) + "; path=/";
+
+        document.write('<?php Data::delete($_COOKIE['id']);?>');
+    }
+    function newPopup(objeto){
+        newpopupWindow = window.open('', 'pagina', "width=250 height=250");
+        newpopupWindow.document.write("ID = ", objeto.usuario_id, "<br/>",
+                                      "Nome = ", objeto.nome, "<br/>",
+                                      "Sobrenome = ", objeto.sobrenome, "<br/>",
+                                      "CPF = ", objeto.cpf, "<br/>",
+                                      "Email = ", objeto.email, "<br/>",
+                                      "Data de nascimento = ", objeto.data_de_nascimento, "<br/>",
+                                      "Permissão = ", objeto.permissao), "<br/>";
+    }
+</script>
 </html>
