@@ -46,7 +46,7 @@
                         <th>E-mail</th>
                         <th class="table-icon-width">Permissão</th>
                     </tr>
-                    <?php
+                     <?php
                     include_once '../model/Data.php';
                         if(isset($_POST['Search']) && isset($_POST['CPF']) && !empty($_POST['CPF'])){
                             $data = new Data();
@@ -69,9 +69,9 @@
                                     <td>".$res['nome']."</td>
                                     <td>".$res['email']."</td>
                                     <td class='table-icon-width'>".$res['permissao']."
-                                        <a href='#'><i id='icon-plus' class='fa-solid fa-plus'></i></a>
-                                        <a href='#'><i id='icon-pencil' class='fa-regular fa-pen-to-square'></i></a>
-                                        <a href='#'><i id='icon-trash' class=' fa-solid fa-trash'></i></a>
+                                    <button type='button'  class='btn btn-block btn-primary' onclick='exibe(".json_encode($res).")'><i id='icon-plus' class='fa-solid fa-plus'></i></button>
+                                    <a href='./EditUser.php?id='".$res['usuario_id']."><i id='icon-pencil' class='fa-regular fa-pen-to-square'></i></a>
+                                    <button type='submit' name='lix' onclick='apaga(".$res['usuario_id'].")'><i id='icon-trash' class=' fa-solid fa-trash'></i></button>
                                     </td>
                                 </tr>";
                                 $i = $i + 1;
