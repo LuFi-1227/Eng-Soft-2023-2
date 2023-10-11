@@ -1,35 +1,48 @@
 <?php 
 //Classe que será utilizada para o envio de dados para o painel de controle
-require_once "./vendor/autoload.php";
+require_once "../vendor/autoload.php";
+require_once "../model/Connection.php";
 use \Firebase\JWT\JWT;
-require_once "./model/Connection.php";
+use Firebase\JWT\Key;
+
 class Data{
+   
     public function login($cpf, $pass){
+        
+        // cria conexão, constrói a query e fecha a conexão
+        
         $pdo = new Connection();
         $pdo = $pdo->Connect();
-
-        $tablename = "usuarios";
-
-        $query = "SELECT * FROM $tablename WHERE CPF = '$cpf' and senha = '$pass'";
+        $query = "SELECT * FROM usuarios WHERE CPF = '$cpf' and senha = '$pass'";
         $result = mysqli_query($pdo, $query);
-
+        $pdo->close();
+        
+        // se o resultado da busca no banco de dados estiver vazio ou diferente de 1 retorna 0 (falso)
         if(empty($result) || mysqli_num_rows($result) != 1){
             http_response_code(401);
-            return -1;
+            return 0;
         }
+        
+        // se o if não ocorreu um fetch assoc é feito para transformar a resposta do banco de dados numa string
 
         $linha = mysqli_fetch_assoc($result);
-
+        
+        // passando os dados juntos para o jwt para ele transformar tudo num hash
+        
         $payload = [
             "cpf" => $cpf,
-            "perm" => $linha['permissao'],
+            "perm" => $linha ["permissao"],
         ];
-
         $encode = JWT::encode($payload, "htsres", 'HS256');
-        $pdo->close();
-        return $encode;
         
-        // como descriptografar (acho que é, mas é bem próximo) -> JWT::decode ($hash, new Key ($chave, "HS256"))
+        // inicia uma sessão e guarda o hash do jwt nela
+        
+        session_start ();
+        $_SESSION["jwt"] = $encode;
+        
+        // se tudo deu certo retorna 1 (true)
+        
+        return 1;
     }
 
     public function table($cpf){
@@ -43,18 +56,37 @@ class Data{
         $pdo->close();
         return $result;
     }
-
-    public function tableId($id){
+    
+    //FUNÇÃO CRIADA PARA A BUSCA DO PERFIL DO USUÁRIO, CRIADO POR CÁSSIO
+    
+    public function ProfileUser(){
         $pdo = new Connection();
         $pdo = $pdo->Connect();
-
-        $tablename = "usuarios";
-
-        $query = "SELECT * FROM $tablename where usuario_id = '$id';";
-        $result = mysqli_query($pdo, $query);
-        $pdo->close();
-        return $result;
-    }
+        
+        session_start ();
+        $aux = $_SESSION;
+    
+            if (isset($aux['jwt'])) {
+               try {
+                    $decode = JWT::decode ($aux,  new Key ("htsres", "HS256"));
+                    $cpf = $decode->cpf;
+                    
+                     $tablename = "usuarios";
+    
+                    $query = "SELECT nome, cpf, email, numMat FROM $tablename where usuarios.cpf = '$cpf';";
+                    $result = mysqli_query($pdo, $query);
+                    $pdo->close();
+                    return $result;
+                
+                
+                } catch (Exception $e) {
+                    echo "Erro: " . $e->getMessage();
+                }
+            } else {
+                echo "Token JWT não encontrado na variável de sessão.<br>";
+                var_dump("$_SESSION");
+            }
+   }
 
     public function tableC(){
         $pdo = new Connection();
@@ -68,7 +100,7 @@ class Data{
         return $result;
     }
 
-    public static function registerUser($nome, ? string $sobrenome=null, $cpf, $perm, $email, $numMat){
+    public static function registerUser($nome,string $sobrenome=null, $cpf, $perm, $email, $numMat){
         $pdo = new Connection();
         $pdo = $pdo->Connect();
 
@@ -93,47 +125,17 @@ class Data{
         }
         return false;
     }
+    
+    public static function removeCash(){
+        $pdo = new connection();
+        $pdo = $pdo->connect();
 
-    public static function delete($obj){
-        $pdo = new Connection();
-        $pdo = $pdo->Connect();
+        $tablename = "saldo";
 
-        $tablename = "usuarios";
-
-        $query = "DELETE FROM $tablename WHERE usuario_id = $obj";
+        $query = "UPDATE $tablename SET movimentacao = 10";
         $result = mysqli_query($pdo, $query);
         $pdo->close();
-    }
 
-    public static function editUser($id, $nome, $sobrenome=null, $cpf, $perm, $email, $numMat){
-        $pdo = new Connection();
-        $pdo = $pdo->Connect();
-
-        $tablename = "usuarios";
-
-        if(strcmp($perm, "Adm")==0){
-            $permissao = 2;
-        }else{
-            if(strcmp($perm, "Tecnico")==0){
-                $permissao = 3;
-            } else{
-                if($perm > -1){
-                    $permissao = $perm;
-                }else{
-                    $permissao = 5;
-                }
-            }
-        }
-
-        $query = "UPDATE $tablename set permissao = '$permissao', nome = '$nome', sobrenome = '$sobrenome', cpf = '$cpf', email = '$email', data_atualizacao = NOW() where usuario_id = '$id'";
-
-        $result = mysqli_query($pdo, $query);
-        
-        if($result){
-            $pdo->close();
-            return true;
-        }
-        return false;
     }
 }
 ?>
