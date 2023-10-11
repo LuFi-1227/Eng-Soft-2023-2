@@ -1,8 +1,8 @@
 <?php 
 //Classe que será utilizada para o envio de dados para o painel de controle
-require_once "../vendor/autoload.php";
+require_once "./vendor/autoload.php";
 use \Firebase\JWT\JWT;
-require_once "../model/Connection.php";
+require_once "./model/Connection.php";
 class Data{
     public function login($cpf, $pass){
         $pdo = new Connection();
@@ -28,6 +28,8 @@ class Data{
         $encode = JWT::encode($payload, "htsres", 'HS256');
         $pdo->close();
         return $encode;
+        
+        // como descriptografar (acho que é, mas é bem próximo) -> JWT::decode ($hash, new Key ($chave, "HS256"))
     }
 
     public function table($cpf){
@@ -66,7 +68,7 @@ class Data{
         return $result;
     }
 
-    public static function registerUser($nome, $sobrenome=null, $cpf, $perm, $email, $numMat){
+    public static function registerUser($nome, ? string $sobrenome=null, $cpf, $perm, $email, $numMat){
         $pdo = new Connection();
         $pdo = $pdo->Connect();
 
