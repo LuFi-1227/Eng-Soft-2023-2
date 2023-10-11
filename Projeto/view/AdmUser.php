@@ -64,7 +64,6 @@
                                     <td class='table-icon-width'>".$res['permissao']."
                                     <a href='./VisualUser.php?id=".$res['usuario_id']."'><i id='icon-plus' class='fa-solid fa-plus'></i></a>
                                     <a href='./EditUser.php?id=".$res['usuario_id']."'><i id='icon-pencil' class='fa-regular fa-pen-to-square'></i></a>
-
                                     <button type='submit' name='lix' onclick='apaga(".$res['usuario_id'].")'><i id='icon-trash' class=' fa-solid fa-trash'></i></button>
                                     </td>
                                 </tr>";
