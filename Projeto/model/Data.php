@@ -36,7 +36,7 @@ class Data{
 
         $tablename = "usuarios";
 
-        $query = "SELECT nome, email, legendas_permissao.permissao FROM $tablename inner join legendas_permissao where usuarios.permissao = legendas_permissao_id and usuarios.cpf = '$cpf';";
+        $query = "SELECT * FROM $tablename inner join legendas_permissao where usuarios.permissao = legendas_permissao_id and usuarios.cpf = '$cpf';";
         $result = mysqli_query($pdo, $query);
         $pdo->close();
         return $result;
@@ -103,5 +103,35 @@ class Data{
         $pdo->close();
     }
 
+    public static function editUser($id, $nome, $sobrenome=null, $cpf, $perm, $email, $numMat){
+        $pdo = new Connection();
+        $pdo = $pdo->Connect();
+
+        $tablename = "usuarios";
+
+        if(strcmp($perm, "Adm")==0){
+            $permissao = 2;
+        }else{
+            if(strcmp($perm, "Tecnico")==0){
+                $permissao = 3;
+            } else{
+                if($perm > -1){
+                    $permissao = $perm;
+                }else{
+                    $permissao = 5;
+                }
+            }
+        }
+
+        $query = "UPDATE $tablename set permissao = '$permissao', nome = '$nome', sobrenome = '$sobrenome', cpf = '$cpf', email = '$email', data_atualizacao = NOW() where usuario_id = '$id'";
+
+        $result = mysqli_query($pdo, $query);
+        
+        if($result){
+            $pdo->close();
+            return true;
+        }
+        return false;
+    }
 }
 ?>

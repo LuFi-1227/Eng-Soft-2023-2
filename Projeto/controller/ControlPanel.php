@@ -1,38 +1,35 @@
 <?php 
 //Classe principal
-require_once '../ES-RUCoins/vendor/autoload.php';
+include_once '../vendor/autoload.php';
 use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 $ctrl = new ControlPanel();
-
-if(isset($_GET['enter'])){
+if(isset($_POST['enter'])){
     if($ctrl->VerificadorPI()==1){
-        require_once "../ES-RUCoins/model/Data.php";
+        include_once "../model/Data.php";
         $data = new Data();
-        $string = $data->login($_GET['CPF'], $_GET['Pass']);
+        $string = $data->login($_POST['CPF'], $_POST['Pass']);
         if($string == -1){
+            header("Location: ../view/PaginaInicial.html");
+            echo "usuário não encontrado ou senha errada!";
             return -1;
         }
         $acesso = JWT::decode($string, new key("htsres", 'HS256'));
         $line = json_encode($acesso);
         $line = json_decode($line, true);
-        if($line['perm'] == 1){
-            echo "Gerente de TI logado";
+        if($line['perm'] <= 2){
+            header("Location: ../view/AdmUser.php");
         }else{
-            if($line['perm'] == 2){
-                echo "Administrador logado";
-            }  else{
-                if($line['perm'] == 3){
-                    echo "Atendente logado";
+            if($line['perm'] == 3){
+                echo "Atendente logado";
+            }else{
+                if($line['perm'] == 4){
+                    echo "Cobrador logado";
                 }else{
-                    if($line['perm'] == 4){
-                        echo "Cobrador logado";
+                    if($line['perm'] == 5){
+                        echo "Usuário logado";
                     }else{
-                        if($line['perm'] == 5){
-                            echo "Usuário logado";
-                        }else{
-                            echo "Cadastro não encontrado!";
-                        }
+                        echo "Cadastro não encontrado!";
                     }
                 }
             }
@@ -40,15 +37,15 @@ if(isset($_GET['enter'])){
         
     }
 }else{
-    if(isset($_GET['forgotPass'])){
+    if(isset($_POST['forgotPass'])){
         echo "Página de esqueceu a senha";
     }
 }
 
 class ControlPanel{
     public function VerificadorPI(){
-        if(isset($_GET['CPF']) && !empty($_GET['CPF'])){
-           if(isset($_GET['Pass']) && !empty($_GET['Pass'])){
+        if(isset($_POST['CPF']) && !empty($_POST['CPF'])){
+           if(isset($_POST['Pass']) && !empty($_POST['Pass'])){
                 return 1;
            }else{
                 echo("Senha vazia!");
@@ -60,11 +57,24 @@ class ControlPanel{
         }
     }
 
-    public function InstanciaPaginaInicial(){
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, "http://localhost/PHP/ES-RUCOINS/view/PaginaInicial.html");
-        curl_exec($curl);
-        curl_close($curl);
+    public function pullData($flag, $var){
+        include_once '../model/Data.php';
+        $data = new Data();
+        if($flag == 0){
+            return $data->table($var);
+        }else{
+            if($flag == 1){
+                return $data->tableId($var);
+            }else{
+                return $data->tableC();
+            }
+        }
+    }
+
+    public function logOut(){
+        unset($_SESSION['jwt']);
+        session_destroy();
+        header('Location: ../view/PaginaInicial.php');
     }
 }
 ?>
