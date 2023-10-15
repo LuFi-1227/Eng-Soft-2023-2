@@ -1,10 +1,34 @@
 <?php 
-include ("../controller/controlPanel.php");
+include_once ("../controller/controlPanel.php");
+include_once '../vendor/autoload.php';
+use \Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 session_start();
-$JWT = $_SESSION['jwt'];
-if(isset($JWT)){
-    header("Location: https://uftdevs.com.br/view/AdmUser.php");
-}
+/*if(isset($_SESSION['jwt'])){
+    $JWT = $_SESSION['jwt'];
+    require_once("./utils/jwt.php");
+    $array = jwtObject::decode($JWT);
+    $permissao = intval($array["perm"], 10);
+    switch($permissao){
+        case 1:
+            header("Location: ./AdmUser.php");
+            break;
+        case 2:
+            header("Location: ./AdmUser.php");
+            break;
+        case 3:
+            header("Location: ./AdicionarSaldo.php");
+            break;
+        case 4:
+            header("Location: ./AdicionarSaldo.php");
+            break;
+        case 5:
+            header("Location: ./UserProfile.php");
+            break;
+        case 6:
+            break;
+    }
+}Trecho de código para redirecionar para página correta;*/
 if ($_POST) {
     
     // inicializa variáveis
@@ -33,14 +57,14 @@ if ($_POST) {
 
 ?>
 <html lang="pt-br">
-<head>
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
-    <title>Tela de login</title>
-</head>
+    </head>
+    <title>RU-COINS</title>
 
 <body>
     <div class="main">

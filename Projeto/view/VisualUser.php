@@ -1,26 +1,21 @@
 <?php
-        include_once '../controller/ControlPanel.php';
-        $ctrl = new ControlPanel();
-        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-        $linha = $ctrl->pullData(1, $id);
-        $vetor = mysqli_fetch_assoc($linha);
+    include ("../controller/controlPanel.php");
+    include ("./utils/session.php");
+    $ctrl = new ControlPanel();
+    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+    $linha = $ctrl->pullData(1, $id);
+    $vetor = mysqli_fetch_assoc($linha);
 ?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Editar Usuário</title>
-</head>
-
+<html lang="pt-br">
+    <?php include "./components/header.php"?>
 <body>
     <div class="main">
-        <?php include "./components/header.html"?>
+         <section>
+                <a class="btn" id="return-btn" href="https://uftdevs.com.br/view/AdmUser.php" role="button">Voltar</a>
+        </section>
         <div class="forms-itens">
-            <form class="form-conteiner" action="../controller/EditPanel.php" method="post">
+            <form class="form-conteiner">
                 <div>
                     <div class="mb-3">
                         <label for="" class="form-label">Nome</label>
@@ -42,9 +37,11 @@
                         <input type="text" class="form-control" name="numMat" valor="<?php echo "NULL"; ?>" id="" readonly="readonly">
                     </div>
                 </div>
-                <div class="mb-3">
-                        <label for="" class="form-label">Permissão</label>
-                        <input type="text" class="form-control" name="numMat" valor="<?php echo $vetor['permissao']; ?>" id="" readonly="readonly">
+                <div>
+                    <div class="mb-3">
+                            <label for="" class="form-label">Permissão</label>
+                            <input type="text" class="form-control" name="perm" value="<?php echo $vetor['permissao']; ?>" id="" readonly="readonly">
+                    </div>
                 </div>
             </form>
         </div>
@@ -52,5 +49,4 @@
     <?php include "./components/footer.html"?>
 </body>
 <script src="https://kit.fontawesome.com/4bfe745599.js" crossorigin="anonymous"></script>
-
 </html>
