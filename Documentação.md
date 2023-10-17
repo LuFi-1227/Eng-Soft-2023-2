@@ -14,12 +14,12 @@ DISCENTES:
 ```
 
 # RUcoins
-Desenvolvimento de um projeto que fará o gerenciamento do restaurante universitário, especificamente no que se concerne ao sistema de créditos. O projeto irá abranger desde o registro do usuário até as atribuições da catraca (que será a responsável por liberar a passagem do usuário ao ambiente alimentar do restaurante).
+Desenvolvimento de um projeto que fará o gerenciamento do restaurante universitário, especificamente no que se concerne ao sistema de créditos. O projeto irá abranger desde o registro do usuário até as atribuições da catraca (que será a responsável por liberar a passagem do usuário ao ambiente de alimentação pertencente ao restaurante).
 # Objetivos:
 Aprimoramento de funções necessárias para o gerenciamento do Restaurante Universitário.
 
 # Requisitos Funcionais(Iterações):
->## Iteração 1: De 30/08/23 à 13/09/23
+>## Iteração 1: De 30/08/23 à 25/10/23
 >- *RF01*: - *Efetuar Login* _ Douglas
 >- *RF02*: - *Cadastrar Usuário* _ Luiz Filipe
 >- *RF03*: - *Alterar de dados do usuário* _ Patryck
@@ -82,7 +82,6 @@ Os atores deverão estar registrados no sistema.
 
 | Campo | Descrição | Formato |
 | --- | --- | --- |
-|  |  |  |
 |  |  |  |
 
 ### Fluxo Alternativo:
@@ -181,7 +180,6 @@ Os atores devem estar logados no sistema com dados registrados e nível de acess
 | Campo | Descrição | Formato |
 | --- | --- | --- |
 |  |  |  |
-|  |  |  |
 
 ### Fluxo Alternativo:
 
@@ -262,13 +260,17 @@ Os atores devem estar logados no sistema com dados registrados. Os atores que de
 | Senha | Sim | Sim | Texto |
 
 ### Opções dos Usuários:
-| --- | --- | --- |
+
 | Opção | Descrição | Atalho |
+| --- | --- | --- |
 | Confirmar | Confirmar alterações | Enter ou Botão ‘Alterar’ |
 | Cancelar | Cancela a operação  | Esc |
 
 ### Relatório do Usuário:
+
+| Campo | Descrição | Formato |
 | --- | --- | --- |
+|  |  |  |
 
 ### Fluxo Alternativo:
 
@@ -355,7 +357,6 @@ O ator deve ter efetuado o login no sistema, buscado por um usuário específico
 | Campo | Descrição | Formato |
 | --- | --- | --- |
 |  |  |  |
-|  |  |  |
 
 ### Fluxo Alternativo:
 
@@ -437,7 +438,7 @@ Persona três, Atendente/Catraca:
 | --- | --- | --- |
 | Meu nome é Júlio, e como atendente eu preciso verificar e recarregar o saldo dos usuários. Além disso, preciso ter a autonomia de cobrar e liberar a entrada do usuário caso algum erro ocorra no sistema de catracas do restaurante | Enquanto Atendente, necessito de permissão para consultar e alterar o valor do saldo dos usuários quando necessário | Preciso que o Atendente possa fazer o processo de recarregar, cobrar e liberar a passagem de usuários rapidamente, a fim de evitar filas no restaurante |
 
-### Tela de manipular saldos:
+### Tela de adicionar saldo:
 
 ![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129432560/72a3b91e-1df6-4952-8328-6798d6829e67)
   
@@ -634,9 +635,9 @@ Os atores devem estar logados no sistema com dados registrados e nível de acess
 | Opção | Descrição | Atalho |
 | --- | --- | --- |
 | Selecionar Cliente | Escolhe o cliente cuja carteirinha será manipulada | Clique |
-| Deduzir Crédito | Deduz crédito da carteirinha do cliente selecionado | Clique |
+| Reduzir Crédito | Reduz crédito da carteirinha do cliente selecionado | Clique |
 | Confirmar Operação | Confirma a operação de adição ou dedução de crédito | Enter |
-| Sair | Sai da função de manipulação de saldos | Esc |
+| Sair | Sai da função de diminuir o saldo | Esc |
 
 ## User Stories
 
@@ -658,6 +659,6 @@ Persona três, Atendente/Catraca:
 | --- | --- | --- |
 | Meu nome é Júlio, e como atendente eu preciso verificar e recarregar o saldo dos usuários. Além disso, preciso ter a autonomia de cobrar e liberar a entrada do usuário caso algum erro ocorra no sistema de catracas do restaurante | Enquanto Atendente, necessito de permissão para consultar e alterar o valor do saldo dos usuários quando necessário | Preciso que o Atendente possa fazer o processo de recarregar, cobrar e liberar a passagem de usuários rapidamente, a fim de evitar filas no restaurante |
 
-### Tela de manipular saldos:
+### Tela de diminuir saldo (extorsão):
 
 ![image](https://github.com/LuFi-1227/Eng-Soft-2023-2/assets/129432560/72a3b91e-1df6-4952-8328-6798d6829e67)
