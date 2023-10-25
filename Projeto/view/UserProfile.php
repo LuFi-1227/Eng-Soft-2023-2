@@ -5,7 +5,7 @@
     use \Firebase\JWT\JWT;
     use Firebase\JWT\Key;
     /*session_start();*/
-    /*$JWT = $_SESSION["jwt"];
+    $JWT = $_SESSION["jwt"];
     $array = jwtObject::decode($JWT,  new Key ( "htsres", 'HS256'));
     $permissao = intval($array["perm"], 10);
     switch($permissao){
@@ -23,7 +23,7 @@
             break;
         case 6:
             break;
-    } */
+    } 
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
