@@ -6,8 +6,8 @@ use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
 class Data{
-   
-    public function login($cpf, $pass){
+    
+    function login($cpf, $pass){
         
         // cria conexão, constrói a query e fecha a conexão
         
@@ -47,7 +47,7 @@ class Data{
         return 1;
     }
     // FUNÇÕES CRIADAS LUIZ SOUZA
-    public function table($cpf){ // SEM ALTUREAÇÃO
+    function table($cpf){
         $pdo = new Connection();
         $pdo = $pdo->Connect();
 
@@ -84,7 +84,7 @@ class Data{
         return $result;
     }
     
-     public static function delete($obj){
+         function delete($obj){
         $pdo = new Connection();
         $pdo = $pdo->Connect();
 
@@ -95,7 +95,7 @@ class Data{
         $pdo->close();
     }
     // FUNÇAÕ CRIADA PELO LUIZ SOUSA
-    public static function editUser($id, $nome, $cpf, $perm, $email, $numMat){
+    function editUser($id, $nome, $cpf, $perm, $email, $numMat){
         $pdo = new Connection();
         $pdo = $pdo->Connect();
 
@@ -122,39 +122,7 @@ class Data{
         return false;
     }
     
-    //FUNÇÃO CRIADA PARA A BUSCA DO PERFIL DO USUÁRIO, CRIADO POR CÁSSIO
-    
-    public function ProfileUser(){
-        $pdo = new Connection();
-        $pdo = $pdo->Connect();
-        
-        session_start ();
-        $aux = $_SESSION;
-    
-            if (isset($aux['jwt'])) {
-               try {
-                    $decode = JWT::decode ($aux,  new Key ("htsres", "HS256"));
-                    $cpf = $decode->cpf;
-                    
-                     $tablename = "usuarios";
-    
-                    $query = "SELECT nome, cpf, email, numMat FROM $tablename where usuarios.cpf = '$cpf';";
-                    $result = mysqli_query($pdo, $query);
-                    $pdo->close();
-                    return $result;
-                
-                
-                } catch (Exception $e) {
-                    echo "Erro: " . $e->getMessage();
-                }
-            } else {
-                echo "Token JWT não encontrado na variável de sessão.<br>";
-                var_dump("$_SESSION");
-            }
-   }
-
-   
-    public static function registerUser($nome, $cpf, $perm, $email, $numMat){
+     function registerUser($nome, $cpf, $perm, $email, $numMat){
         $pdo = new Connection();
         $pdo = $pdo->Connect();
 
@@ -207,7 +175,7 @@ class Data{
     }
     //Função feita por Luís Felipe Krause
     //Essa função faz a consulta do saldo do usuário no banco de dados
-    public function tableExtract($cpf){
+    function tableExtract($cpf){
         $pdo = new Connection();
         $pdo = $pdo->Connect();
         
@@ -270,7 +238,7 @@ class Data{
     }
     
     #Função para remover saldo do banco de dados - Feita por @XDougSa
-    public static function removeCash($cpf) {
+    function removeCash($cpf) {
         $pdo = new connection();
         $pdo = $pdo->connect();
     
@@ -321,7 +289,7 @@ class Data{
     $pdo->close();
     }
 
-    public function retrievePassword($email) {
+    function retrievePassword($email) {
         $pdo = new Connection();
         $conn = $pdo->Connect();
         
@@ -346,6 +314,37 @@ class Data{
 
         return $retrievedEmail;
     }
+
+     //FUNÇÃO CRIADA PARA A BUSCA DO PERFIL DO USUÁRIO, CRIADO POR CÁSSIO
+    
+    function ProfileUser(){
+        $pdo = new Connection();
+        $pdo = $pdo->Connect();
+        
+        session_start ();
+        $aux = $_SESSION;
+    
+            if (isset($aux['jwt'])) {
+               try {
+                    $decode = JWT::decode ($aux,  new Key ("htsres", "HS256"));
+                    $cpf = $decode->cpf;
+                    
+                     $tablename = "usuarios";
+    
+                    $query = "SELECT nome, cpf, email, numMat FROM $tablename where usuarios.cpf = '$cpf';";
+                    $result = mysqli_query($pdo, $query);
+                    $pdo->close();
+                    return $result;
+                
+                
+                } catch (Exception $e) {
+                    echo "Erro: " . $e->getMessage();
+                }
+            } else {
+                echo "Token JWT não encontrado na variável de sessão.<br>";
+                var_dump("$_SESSION");
+            }
+   }
     
     public function retrieveId($email) {
         $pdo = new Connection();
