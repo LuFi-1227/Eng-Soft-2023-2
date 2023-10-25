@@ -64,14 +64,14 @@ class ControlPanel{
     public function retrievePassword($email) {
         $data = new Data();
         $retrievedEmail = $data->retrievePassword($email);
-        
+        $id = $data->retrieveid($email);
         if($retrievedEmail === 0){
             echo "E-mail não encontrado!";
             return 0;
         } else {
             $to = $retrievedEmail; // Endereço de e-mail do destinatário
             $subject = "Recuperação de senha"; // Assunto do e-mail
-            $message = "Clique no link a seguir para recuperar a senha: https://uftdevs.com.br/view/CadstroUsuario.php";
+            $message = "Clique no link a seguir para recuperar a senha: https://uftdevs.com.br/view/ModificaSenha.php?id=".$id;
             $headers = "From: Uftdeves"; // Cabeçalhos do e-mail (incluindo o endereço do remetente)
 
             // Aqui você pode usar a função mail() ou uma biblioteca de e-mail para enviar o e-mail.
