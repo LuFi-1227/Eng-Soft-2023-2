@@ -187,6 +187,24 @@ class Data{
         return 0;
     }
     
+    public static function editPass($senha, $id){
+        $pdo = new Connection();
+        $pdo = $pdo->Connect();
+
+        $tablename = "usuarios";
+        
+        //Deixa a porra do &&
+        
+        $query = "UPDATE $tablename set senha = '$senha', data_atualizacao = NOW() where usuario_id = '$id'";
+
+        $result = mysqli_query($pdo, $query);
+        
+        if($result){
+            $pdo->close();
+            return true;
+        }
+        return false;
+    }
     //Função feita por Luís Felipe Krause
     //Essa função faz a consulta do saldo do usuário no banco de dados
     public function tableExtract($cpf){
@@ -329,5 +347,28 @@ class Data{
         return $retrievedEmail;
     }
     
+    public function retrieveId($email) {
+        $pdo = new Connection();
+        $pdo = $pdo->Connect();
+        
+        // Use prepared statements to avoid SQL injection
+        $query = "SELECT email FROM usuarios WHERE email = '$email'";
+
+        $result = mysqli_query($pdo, $query);
+        $pdo->close();
+        
+        // se o resultado da busca no banco de dados estiver vazio ou diferente de 1 retorna 0 (falso)
+        if(empty($result) || mysqli_num_rows($result) != 1){
+            http_response_code(401);
+            return 0;
+        }
+        
+        // se o if não ocorreu um fetch assoc é feito para transformar a resposta do banco de dados numa string
+
+        $linha = mysqli_fetch_assoc($result);
+
+
+        return $linha['usuario_id'];
+    }
 }
 ?>

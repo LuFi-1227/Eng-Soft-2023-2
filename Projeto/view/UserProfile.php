@@ -2,24 +2,8 @@
     include ("./utils/session.php");
     require_once './utils/jwt.php';
     require_once("./utils/jwt.php");
-    /*$array = jwtObject::decode($JWT);
+    $array = jwtObject::decode($JWT);
     $permissao = intval($array["perm"], 10);
-    switch($permissao){
-        case 1:
-            header("Location: ./AdmUser.php");
-            break;
-        case 2:
-            header("Location: ./AdmUser.php");
-            break;
-        case 3:
-            header("Location: ./AdicionarSaldo.php");
-            break;
-        case 4:
-            header("Location: ./AdicionarSaldo.php");
-            break;
-        case 6:
-            break;
-    } Trecho de código para redirecionar para página correta;*/
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -48,6 +32,7 @@
                         <!--<td> Nº Matricula:<?php echo ($result['numMat']); ?> </td><br> Reativar quando houver numero de matrícula no Banco de Dados-->
                     </tr>
                 </div>
+                <a href='./ModificarSenha.php?id=".$array['id']."'><input type="submit" id="btn" name="enter" class="btn btn-success" value="Enviar"></a>
             </div>
         </section>
     </div>
