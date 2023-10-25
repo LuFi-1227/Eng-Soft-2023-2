@@ -75,7 +75,9 @@ class Data{
        public function tableC($id){
         $pdo = new Connection();
         $pdo = $pdo->Connect();
+
         $tablename = "usuarios";
+
         $query = "SELECT * FROM $tablename inner join legendas_permissao where usuarios.permissao = legendas_permissao_id and $id != usuarios.usuario_id order by usuario_id desc limit 8";
         $result = mysqli_query($pdo, $query);
         $pdo->close();
@@ -197,6 +199,8 @@ class Data{
 
         return $result;
     }
+
+    
     //função feita por Rafael de Oliveira Ribeiro.
     //essa função faz a alteração do saldo do usuario adicionando mais saldo.
     function adicionarSaldo($cpf, $numeroRefeicoes) {
@@ -247,24 +251,57 @@ class Data{
         $pdo->close();
     }
     
+    #Função para remover saldo do banco de dados - Feita por @XDougSa
+    public static function removeCash($cpf) {
+        $pdo = new connection();
+        $pdo = $pdo->connect();
     
-    // function retrievePassword ($email) {
-        
-    //     $pdo = new Connection();
-    //     $pdo = $pdo->Connect();
-    //     $query = "SELECT email FROM usuarios WHERE email = '$email'";
-    //     $result = mysqli_query($pdo, $query);
-    //     $pdo->close();
-        
-    //     if (mysqli_num_rows ($result) != 1) {
-    //         return 0;
-    //     }
-        
-    //     $result = mysqli_fetch_assoc($result);
-    //     // fazer um fetch assoc e então retornar o campo de email;
-    //     return $result ["email"];
-    // }
+        $tablenameSaldo = "saldo";
+        $tablenameUsuarios = "usuarios";
     
+        // Consulta para obter o saldo e CPF do usuário
+        $query = "SELECT $tablenameSaldo.saldo, $tablenameUsuarios.cpf 
+                  FROM $tablenameSaldo
+                  INNER JOIN $tablenameUsuarios ON $tablenameSaldo.usuario_id = $tablenameUsuarios.usuario_id
+                  WHERE $tablenameUsuarios.cpf = ?";
+    
+        $stmt = $pdo->prepare($query);
+        $stmt->bind_param("s", $cpf);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $saldo = $row['saldo'];
+    
+            // Defina o valor da movimentação a ser removida
+            $movimentacao = 2.5;
+    
+            // Verifica se o saldo é suficiente
+            if ($saldo >= $movimentacao) {
+                $saldo = $saldo - $movimentacao;
+    
+                // Atualiza o saldo na tabela 'saldo'
+                $updateQuery = "UPDATE $tablenameSaldo
+                                INNER JOIN $tablenameUsuarios ON $tablenameSaldo.usuario_id = $tablenameUsuarios.usuario_id
+                                SET $tablenameSaldo.saldo = ?
+                                WHERE $tablenameUsuarios.cpf = ?";
+    
+                $stmt = $pdo->prepare($updateQuery);
+                $stmt->bind_param("is", $saldo, $cpf);
+                $stmt->execute();
+                $resp = true;
+                return $resp;
+            } else {
+                $resp = false;
+                return $resp;
+            }
+        }
+
+    $stmt->close();
+    $pdo->close();
+    }
 
     public function retrievePassword($email) {
         $pdo = new Connection();
@@ -284,113 +321,13 @@ class Data{
         $stmt->bind_result($retrievedEmail);
         $stmt->fetch();
         $stmt->close();
-        $pdo->close();
+        mysqli_close($conn);
+        //$pdo->close();
+        //$pdo = Connection::Connect();
+        //mysqli_close($pdo);
 
         return $retrievedEmail;
     }
     
 }
-
- #Função para remover saldo do banco de dados - Feita por @XDougSa
- public static function removeCash($cpf) {
-    $pdo = new connection();
-    $pdo = $pdo->connect();
-
-    $tablenameSaldo = "saldo";
-    $tablenameUsuarios = "usuarios";
-
-    // Consulta para obter o saldo e CPF do usuário
-    $query = "SELECT $tablenameSaldo.saldo, $tablenameUsuarios.cpf 
-              FROM $tablenameSaldo
-              INNER JOIN $tablenameUsuarios ON $tablenameSaldo.usuario_id = $tablenameUsuarios.usuario_id
-              WHERE $tablenameUsuarios.cpf = ?";
-
-    $stmt = $pdo->prepare($query);
-    $stmt->bind_param("s", $cpf);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-
-    if ($result && $result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $saldo = $row['saldo'];
-
-        // Defina o valor da movimentação a ser removida
-        $movimentacao = 2.5;
-
-        // Verifica se o saldo é suficiente
-        if ($saldo >= $movimentacao) {
-            $saldo = $saldo - $movimentacao;
-
-            // Atualiza o saldo na tabela 'saldo'
-            $updateQuery = "UPDATE $tablenameSaldo
-                            INNER JOIN $tablenameUsuarios ON $tablenameSaldo.usuario_id = $tablenameUsuarios.usuario_id
-                            SET $tablenameSaldo.saldo = ?
-                            WHERE $tablenameUsuarios.cpf = ?";
-
-            $stmt = $pdo->prepare($updateQuery);
-            $stmt->bind_param("is", $saldo, $cpf);
-            $stmt->execute();
-            $resp = true;
-            return $resp;
-        } else {
-            $resp = false;
-            return $resp;
-        }
-    }
-
-    //função feita por Rafael de Oliveira Ribeiro.
-    //essa função faz a alteração do saldo do usuario adicionando mais saldo.
-    function adicionarSaldo($cpf, $numeroRefeicoes) {
-        $pdo = new connection();
-        $pdo = $pdo->connect();
-    
-        $tablenameSaldo = "saldo";
-        $tablenameUsuarios = "usuarios";
-    
-        // Consulta para obter o saldo e CPF do usuário
-        $query = "SELECT $tablenameSaldo.saldo, $tablenameUsuarios.cpf 
-                  FROM $tablenameSaldo
-                  INNER JOIN $tablenameUsuarios ON $tablenameSaldo.usuario_id = $tablenameUsuarios.usuario_id
-                  WHERE $tablenameUsuarios.cpf = ?";
-    
-        $stmt = $pdo->prepare($query);
-        $stmt->bind_param("s", $cpf);
-        $stmt->execute();
-        $result = $stmt->get_result();
-    
-        if ($result && $result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $saldo = $row['saldo'];
-    
-            // Calcula o valor a ser adicionado com base no número de refeições
-            $valorAdicionar = $numeroRefeicoes * 2.5;
-    
-            $novoSaldo = $saldo + $valorAdicionar;
-    
-            // Atualiza o saldo na tabela 'saldo'
-            $updateQuery = "UPDATE $tablenameSaldo
-                            INNER JOIN $tablenameUsuarios ON $tablenameSaldo.usuario_id = $tablenameUsuarios.usuario_id
-                            SET $tablenameSaldo.saldo = ?
-                            WHERE $tablenameUsuarios.cpf = ?";
-    
-            $stmt = $pdo->prepare($updateQuery);
-            $stmt->bind_param("is", $novoSaldo, $cpf);
-            $stmt->execute();
-    
-            $resp = true;
-            return $resp;
-        } else {
-            $resp = false;
-            return $resp;
-        }
-    
-        $stmt->close();
-        $pdo->close();
-    }
-   
-$stmt->close();
-$pdo->close();
-}
 ?>
-
