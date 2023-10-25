@@ -137,5 +137,55 @@ class Data{
         $pdo->close();
 
     }
+
+    //função feita por Rafael de Oliveira Ribeiro.
+    //essa função faz a alteração do saldo do usuario adicionando mais saldo.
+    function adicionarSaldo($cpf, $numeroRefeicoes) {
+        $pdo = new connection();
+        $pdo = $pdo->connect();
+    
+        $tablenameSaldo = "saldo";
+        $tablenameUsuarios = "usuarios";
+    
+        // Consulta para obter o saldo e CPF do usuário
+        $query = "SELECT $tablenameSaldo.saldo, $tablenameUsuarios.cpf 
+                  FROM $tablenameSaldo
+                  INNER JOIN $tablenameUsuarios ON $tablenameSaldo.usuario_id = $tablenameUsuarios.usuario_id
+                  WHERE $tablenameUsuarios.cpf = ?";
+    
+        $stmt = $pdo->prepare($query);
+        $stmt->bind_param("s", $cpf);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $saldo = $row['saldo'];
+    
+            // Calcula o valor a ser adicionado com base no número de refeições
+            $valorAdicionar = $numeroRefeicoes * 2.5;
+    
+            $novoSaldo = $saldo + $valorAdicionar;
+    
+            // Atualiza o saldo na tabela 'saldo'
+            $updateQuery = "UPDATE $tablenameSaldo
+                            INNER JOIN $tablenameUsuarios ON $tablenameSaldo.usuario_id = $tablenameUsuarios.usuario_id
+                            SET $tablenameSaldo.saldo = ?
+                            WHERE $tablenameUsuarios.cpf = ?";
+    
+            $stmt = $pdo->prepare($updateQuery);
+            $stmt->bind_param("is", $novoSaldo, $cpf);
+            $stmt->execute();
+    
+            $resp = true;
+            return $resp;
+        } else {
+            $resp = false;
+            return $resp;
+        }
+    
+        $stmt->close();
+        $pdo->close();
+    }
 }
 ?>
