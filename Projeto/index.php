@@ -4,6 +4,9 @@
     $JWT = $_SESSION['jwt'];
     
     switch($url){
+        case '/': 
+           header("Location: https://uftdevs.com.br/view/login.php");
+            break;
         case '/login': 
            header("Location: https://uftdevs.com.br/view/login.php");
             break;

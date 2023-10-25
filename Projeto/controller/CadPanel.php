@@ -14,8 +14,8 @@ if(isset($_POST['enter'])){
                         $numMat = null;
                     }
                     include_once '../model/Data.php';
-                    if(Data::registerUser($nome, null, $cpf, $option, $email, $numMat)==true){
-                        header("Location: http://localhost/PHP/ES-RUCOINS/view/AdmUser.php");
+                    if(Data::registerUser($nome, $cpf, $option, $email, $numMat)==true){
+                        header("Location: ../view/AdmUser.php");
                         exit();
                     }
                 }else{

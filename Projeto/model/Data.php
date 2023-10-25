@@ -75,9 +75,7 @@ class Data{
        public function tableC($id){
         $pdo = new Connection();
         $pdo = $pdo->Connect();
-
         $tablename = "usuarios";
-
         $query = "SELECT * FROM $tablename inner join legendas_permissao where usuarios.permissao = legendas_permissao_id and $id != usuarios.usuario_id order by usuario_id desc limit 8";
         $result = mysqli_query($pdo, $query);
         $pdo->close();
@@ -199,8 +197,6 @@ class Data{
 
         return $result;
     }
-
-    
     //função feita por Rafael de Oliveira Ribeiro.
     //essa função faz a alteração do saldo do usuario adicionando mais saldo.
     function adicionarSaldo($cpf, $numeroRefeicoes) {
