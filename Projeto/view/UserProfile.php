@@ -4,6 +4,8 @@
     require_once("./utils/jwt.php");
     use \Firebase\JWT\JWT;
     use Firebase\JWT\Key;
+    $array = jwtObject::decode($JWT);
+    $permissao = intval($array["perm"], 10);
     /*session_start();*/
     /*$JWT = $_SESSION["jwt"];
     $array = jwtObject::decode($JWT,  new Key ( "htsres", 'HS256'));
@@ -50,6 +52,7 @@
                         <!--<td> Nº Matricula:<?php echo ($result['numMat']); ?> </td><br> Reativar quando houver numero de matrícula no Banco de Dados-->
                     </tr>
                 </div>
+              <a href='./ModificarSenha.php?id=".$array['id']."'><input type="submit" id="btn" name="enter" class="btn btn-success" value="Enviar"></a>
             </div>
             <div class="profile-content">
                 <div class="profile-name">
