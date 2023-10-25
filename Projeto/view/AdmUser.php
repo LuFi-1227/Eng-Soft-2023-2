@@ -1,24 +1,29 @@
+<?php
+    include ("./utils/session.php");
+    require_once("./utils/jwt.php");
+    /*$array = jwtObject::decode($JWT);
+    $permissao = intval($array["perm"], 10);
+    switch($permissao){
+        case 3:
+            header("Location: ./AdicionarSaldo.php");
+            break;
+        case 4:
+            header("Location: ./AdicionarSaldo.php");
+            break;
+        case 5:
+            header("Location: ./UserProfile.php");
+            break;
+        case 6:
+            break;
+    }Trecho de código para redirecionar para página correta;*/
+?>
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://localhost/PHP/ES-RUCoins/view/css/style.css">
-    <title>Home</title>
-</head>
-
+<?php
+    include "./components/header.php";
+?>
 <body>
     <div class="main">
-        <section>
-            <div class="head-itens">
-                <img src="http://localhost/PHP/ES-RUCoins/view/img/brasao_uft.webp" alt="">
-                <a href="#"><i class="fa-solid fa-circle-user"></i></a>
-            </div>
-        </section>
-
         <section>
             <div class="search-itens">
                 <form class="search-form" method="post" action="">
@@ -36,7 +41,6 @@
                 </form>
             </div>
         </section>
-
         <section>
             <div class="table-content">
                 <table>
@@ -45,36 +49,38 @@
                         <th>Nome</th>
                         <th>E-mail</th>
                         <th class="table-icon-width">Permissão</th>
+                        <th>Alterar dados</th>
                     </tr>
                     <?php
-                        include_once '../controller/ControlPanel.php';
-                        $ctrl = new ControlPanel();
+                    include_once '../model/Data.php';
                         if(isset($_POST['Search']) && isset($_POST['CPF']) && !empty($_POST['CPF'])){
-                            $result = $ctrl->pullData(0, $_POST['CPF']);
-                            resultados($result);
+                            $data = new Data();
+                            $list = $data->table($_POST['CPF']);
+                            resultados($list);
                         }else{
                             if(isset($_POST['Register'])){
-                                header("Location: ../view/CadstroUsuario.html");
+                                echo "<script>window.location.href = `CadstroUsuario.php`</script>";
                             }else{
-                                $result = $ctrl->pullData(2, null);
+                                $data = new Data();
+                                $result = $data->tableC();
                                 resultados($result);
                             }
                         }
                         function resultados($data){
                             $i = 1;
                             while($res = mysqli_fetch_assoc($data)){
-                                echo "<tr>
-                                    <th>".$i."</th>
-                                    <td>".$res['nome']."</td>
-                                    <td>".$res['email']."</td>
-                                    <td class='table-icon-width'>".$res['permissao']."
-                                    <button type='button'  class='btn btn-block btn-primary' onclick='exibe(".json_encode($res).")'><i id='icon-plus' class='fa-solid fa-plus'></i></button>
-
-                                    <a href='./EditUser.php?id=".$res['usuario_id']."'><i id='icon-pencil' class='fa-regular fa-pen-to-square'></i></a>
-
-                                    <button type='submit' name='lix' onclick='apaga(".$res['usuario_id'].")'><i id='icon-trash' class=' fa-solid fa-trash'></i></button>
-                                    </td>
-                                </tr>";
+                                echo 
+                                    "<tr>
+                                        <th>".$i."</th>
+                                        <td>".$res['nome']."</td>
+                                        <td>".$res['email']."</td>
+                                        <td class='table-icon-width'>".$res['permissao']."</td>
+                                        <td>
+                                            <a href='./VisualUser.php?id=".$res['usuario_id']."'><i id='icon-plus' class='fa-solid fa-plus'></i></a>
+                                            <a href='./EditUser.php?id=".$res['usuario_id']."'><i id='icon-pencil' class='fa-regular fa-pen-to-square'></i></a>
+                                            <button id='icon-trash' type='submit' name='lix' onclick='DeleteUser(".$res['usuario_id'].")'><i class=' fa-solid fa-trash'></i></button>
+                                        </td>
+                                    </tr>";
                                 $i = $i + 1;
                             }
                         }
@@ -83,33 +89,24 @@
             </div>
         </section>
     </div>
-    <footer class="footer">
-        <div class="footer-itens">
-            <img src="./img/brasao_uft.webp" alt="">
-            <img src="./img/logocurso.png" alt="">
-        </div>
-        Engenharia de software 2023/2
-    </footer>
+    <?php include "./components/footer.html"?>
 </body>
 <script src="https://kit.fontawesome.com/4bfe745599.js" crossorigin="anonymous"></script>
 <script type="text/javascript">
-    function exibe(objeto){
-        newPopup(objeto);
-    }
-
-    function apaga(objeto){
-        newpopupWindow = window.open('', 'pagina', "width=250 height=250");
-        newpopupWindow.document.write("Deseja apagar este registro? <br/> <a href='../controller/deletPanel.php?id=",objeto,"'><button type='submit' name='yes'>Sim</button></a> <a href='#' onclick='window.close()'><button type='submit' name='not'>Não</button></a>");
-    }
-    function newPopup(objeto){
-        newpopupWindow = window.open('', 'pagina', "width=250 height=250");
-        newpopupWindow.document.write("ID = ", objeto.usuario_id, "<br/>",
-                                      "Nome = ", objeto.nome, "<br/>",
-                                      "Sobrenome = ", objeto.sobrenome, "<br/>",
-                                      "CPF = ", objeto.cpf, "<br/>",
-                                      "Email = ", objeto.email, "<br/>",
-                                      "Data de nascimento = ", objeto.data_de_nascimento, "<br/>",
-                                      "Permissão = ", objeto.permissao), "<br/>";
-    }
+function DeleteUser(objeto){
+    Swal.fire({
+      title: 'Deseja deletar o usuário?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+       window.location.href = `../controller/deletPanel.php?id=${objeto}`;
+      }
+    })
+}
+    document.getElementById("btnLogout").onclick = DeleteUser;
 </script>
 </html>
