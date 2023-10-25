@@ -15,7 +15,6 @@ class ControlPanel{
         // se a função login do documento data retornar 1 a verificação é feita, senão retornou 0 e isso é passado para o html mostrar o alert
         
         if($data->login($cpf , $password)){
-            
             if($line['perm'] <= 2){
             header("Location: ../view/AdmUser.php");
             }else{
@@ -28,7 +27,11 @@ class ControlPanel{
                         if($line['perm'] == 5){
                             header("Location: ../view/UserProfile.php");
                         }else{
-                            echo "Cadastro não encontrado!";
+                            if($line['perm'] == 6){
+                                header("Location: ../view/Catraca.php");
+                            }else{
+                                echo "Cadastro não encontrado!";
+                            }
                         }
                     }
                 }
@@ -57,5 +60,29 @@ class ControlPanel{
         unset($_SESSION['jwt']);
         session_destroy();
     }
+    
+    public function retrievePassword($email) {
+        $data = new Data();
+        $retrievedEmail = $data->retrievePassword($email);
+        
+        if($retrievedEmail === 0){
+            echo "E-mail não encontrado!";
+            return 0;
+        } else {
+            $to = $retrievedEmail; // Endereço de e-mail do destinatário
+            $subject = "Recuperação de senha"; // Assunto do e-mail
+            $message = "Clique no link a seguir para recuperar a senha: https://uftdevs.com.br/view/CadstroUsuario.php";
+            $headers = "From: Uftdeves"; // Cabeçalhos do e-mail (incluindo o endereço do remetente)
+
+            // Aqui você pode usar a função mail() ou uma biblioteca de e-mail para enviar o e-mail.
+            // Exemplo com a função mail():
+            if (mail($to, $subject, $message, $headers)) {
+                echo "E-mail enviado com sucesso!";
+            } else {
+                echo "Erro ao enviar o e-mail.";
+            }
+        }
+    }
+
 }
 ?>
