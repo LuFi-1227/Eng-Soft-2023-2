@@ -22,7 +22,7 @@ require_once './utils/jwt.php';
                         <i class='fa-solid fa-user'></i> Olá, ".$nome."
                       </a>
                       <ul class='dropdown-menu'>
-                        <li><a class='dropdown-item' href='/view/UserProfile.php'>Perfil</a></li>
+                        <li><a class='dropdown-item' href='../view/UserProfile.php'>Perfil</a></li>
                         <li><a class='dropdown-item' onclick='logout()'>Sair</a></li>
                       </ul>
                 </div>";
