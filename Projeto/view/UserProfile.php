@@ -30,6 +30,7 @@
                     <td> CPF: <?php echo ($result['cpf']); ?> </td><br>
                     <td> E-mail: <?php echo ($result['email']); ?> </td><br>
                     <!--<td> Nº Matricula:<?php echo ($result['numMat']); ?> </td><br> Reativar quando houver numero de matrícula no Banco de Dados-->
+                    <button id="btnBloquearCartao" onclick='bloquearCartao(<?php echo ($result['usuario_id']); ?>)' class="btn btn-primary"><?php if($result['cartao_status'] == 0) echo "Bloquear cartão <i class='fa-solid fa-lock'></i></button>"; else echo "Desbloquear cartão <i class='fa-solid fa-lock-open'></i>"; ?> </button>
                 </tr>
             </div>
         </div>
@@ -87,3 +88,11 @@
     </div>
     <?php include "./components/footer.html"?>
 </body>
+<script src="https://kit.fontawesome.com/4bfe745599.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function bloquearCartao(usuario_id) {
+        window.location.href = '../controller/bloquearCartao.php?id=${usuario_id}';
+    }
+document.getElementById("btnBloquearCartao").onclick = bloquearCartao;
+</script>
