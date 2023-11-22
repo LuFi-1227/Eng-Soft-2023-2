@@ -1,11 +1,34 @@
 <?php
-    include ("./utils/session.php");
+     include ("./utils/session.php");
+    require_once './utils/jwt.php';
     require_once("./utils/jwt.php");
     use \Firebase\JWT\JWT;
     use Firebase\JWT\Key;
-    /*session_start();*/
-    $JWT = $_SESSION["jwt"];
-    $array = jwtObject::decode($JWT,  new Key ( "htsres", 'HS256'));
+    // /session_start();/
+    // $JWT = $_SESSION["jwt"];
+    // $array = jwtObject::decode($JWT,  new Key ( "htsres", 'HS256'));
+    // $permissao = intval($array["perm"], 10);
+    // switch($permissao){
+    //     case 1:
+    //         header("Location: ./AdmUser.php");
+    //         break;
+    //     case 2:
+    //         header("Location: ./AdmUser.php");
+    //         break;
+    //     case 3:
+    //         header("Location: ./AdicionarSaldo.php");
+    //         break;
+    //     case 4:
+    //         header("Location: ./AdicionarSaldo.php");
+    //         break;
+    include_once '../controller/controlPanel.php';
+                $ctrl = new ControlPanel();
+                $cpf = jwtObject::decode($_SESSION['jwt']);
+                if (!isset  ($cpf)) {
+                    echo (" echo <script> window.location.href = 'https://uftdevs.com.br/view/login.php'; </script>;");
+                }
+                $result = $ctrl->pullData(0, $cpf['cpf']);
+                $result = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>
@@ -14,13 +37,6 @@
 <body>
     <div class="main-profile">
         <div class="profile-content">
-            <?php
-                include_once '../controller/controlPanel.php';
-                $ctrl = new ControlPanel();
-                $cpf = jwtObject::decode($JWT);
-                $result = $ctrl->pullData(0, $cpf['cpf']);
-                $result = mysqli_fetch_assoc($result);
-            ?>
             <div class="profile-name">
                 <p>USUÁRIO</p>
             </div>
@@ -31,8 +47,8 @@
                     <p> E-mail: <?php echo ($result['email']); ?> </p>
                     <p> ID: <?php echo ($result['usuario_id']); ?> </p>
                     <p> Status cartão: <?php echo ($result['cartao_status']); ?> </p>
-                    <button id="btnBloquearCartao" onclick='bloquearCartao(<?php echo ($result['usuario_id']); ?>)' class="btn btn-primary"><?php if($result['cartao_status'] == 0) echo "Bloquear cartão <i class='fa-solid fa-lock'></i></button>"; else echo "Desbloquear cartão <i class='fa-solid fa-lock-open'></i>"; ?> </button>
-                    <button id="btnDeleteUser" onclick='DeleteUser(<?php echo ($result['usuario_id']); ?>)' class="btn btn-danger">Deletar perfil <i class='fa-solid fa-trash'></i></button>
+                    <button id="btnBloquearCartao" onclick='bloquearCartao()' class="btn btn-primary"><?php if($result['cartao_status'] == 0) echo "Bloquear cartão <i class='fa-solid fa-lock'></i></button>"; else echo "Desbloquear cartão <i class='fa-solid fa-lock-open'></i>"; ?> </button>
+                    <button id="btnDeleteUser" onclick='DeleteUser()' class="btn btn-danger">Deletar perfil <i class='fa-solid fa-trash'></i></button>
                     <form action="./Recarrega.php" method="post">
                         <input type="hidden" name="cpf" value="<?php echo $cpf['cpf']; ?>">
                         <button style="margin-top: 5px;" class="btn btn-success">Recarregar <i style="color: #fff;" id='icon-cash' class='fa fa-dollar'></i></button>
@@ -56,7 +72,7 @@
                 <button id="btnDeletePhoto" onclick='deletePhoto()' class="btn btn-danger">Excluir Foto <i class='fa-solid fa-trash'></i></button>
                  <?php
                     $photoPath = $result['photo_path'] ?? '../view/img/brasao_uft.ico';
-                    echo "<img src='$photoPath' alt='User Photo' class='user-photo'>";
+                    echo "<img src='$photoPath' alt='User Photo' class='user-photo' width='50px' >";
                 ?>
             </div>
         </div>
@@ -95,7 +111,6 @@
                             tableShow($dados);
                         }
                     
-            
                         function tableShow($result) {
                             while ($res = mysqli_fetch_assoc($result)){
                                 $res['saldo'] = number_format($res['saldo'], 2, ',', '.');
@@ -109,9 +124,6 @@
                     ?>
                 </table>
             </div>
-            <div>
-                <a href="./Recarrega.php"><button class="btn btn-primary">Recarregar</button></a>
-            </div>
         </div>
     </div>
     <?php include "./components/footer.html"?>
@@ -119,28 +131,12 @@
 <script src="https://kit.fontawesome.com/4bfe745599.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    function bloquearCartao(usuario_id) {
-        window.location.href = '../controller/bloquearCartao.php?id=${usuario_id}';
-    }
-
-    function logout() {
-        Swal.fire({
-            title: 'Deseja sair?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Confirmar',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = '../controller/deslog.php';
-            }
-        })
+    function bloquearCartao() {
+        window.location.href = '../controller/bloquearCartao.php?id=${<?php echo ($result['usuario_id']); ?>}';
     }
 
         
-    function DeleteUser(objeto) {
+    function DeleteUser() {
         Swal.fire({
             title: 'Deseja deletar o usuário?',
             icon: 'warning',
@@ -151,7 +147,7 @@
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = '../controller/deleteUser.php?id="${objeto}"';
+               window.location.href = `../controller/deleteUser.php?id=${<?php echo ($result['usuario_id']); ?>}`;
             }
         })
     }
@@ -171,8 +167,4 @@
             }
         })
     }
-document.getElementById("btnDeleteUser").onclick = DeleteUser;
-document.getElementById("btnBloquearCartao").onclick = bloquearCartao;
-  
-  
 </script>

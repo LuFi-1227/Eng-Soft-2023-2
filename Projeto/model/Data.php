@@ -6,8 +6,8 @@ use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
 class Data{
-    
-    function login($cpf, $pass){
+   
+    public function login($cpf, $pass){
         
         // cria conexão, constrói a query e fecha a conexão
         
@@ -47,7 +47,7 @@ class Data{
         return 1;
     }
     // FUNÇÕES CRIADAS LUIZ SOUZA
-    function table($cpf){
+    public function table($cpf){ // SEM ALTERAÇÃO
         $pdo = new Connection();
         $pdo = $pdo->Connect();
 
@@ -84,18 +84,73 @@ class Data{
         return $result;
     }
     
-         function delete($obj){
-        $pdo = new Connection();
-        $pdo = $pdo->Connect();
+    //Criada por Cássio Coutinho Lima
+    public static function deleteUser($obj) {
+    $pdo = new Connection();
+    $pdo = $pdo->Connect();
+    $tablename = "usuarios";
+    
+    // Verificar e excluir saldo
+    $check_query = "SELECT COUNT(*) FROM saldo WHERE usuario_id = ?";
+    $stmt_check = $pdo->prepare($check_query);
+    $stmt_check->bind_param("i", $obj);
+    $stmt_check->execute();
+    $stmt_check->bind_result($saldo_count);
+    $stmt_check->fetch();
+    $stmt_check->close();
 
-        $tablename = "usuarios";
-
-        $query = "DELETE FROM $tablename WHERE usuario_id = $obj";
-        $result = mysqli_query($pdo, $query);
-        $pdo->close();
+    if ($saldo_count > 0) {
+        $query_saldo = "DELETE FROM saldo WHERE usuario_id = ?";
+        $stmt_saldo = $pdo->prepare($query_saldo);
+        $stmt_saldo->bind_param("i", $obj);
+        $stmt_saldo->execute();
+        $stmt_saldo->close();
     }
+
+    // Excluir usuário
+    $query_usuario = "DELETE FROM $tablename WHERE usuario_id = ?";
+    $stmt_usuario = $pdo->prepare($query_usuario);
+    $stmt_usuario->bind_param("i", $obj);
+    $stmt_usuario->execute();
+    $stmt_usuario->close();
+
+    // Fechar conexão
+    $pdo->close();
+
+    // Redirecionar para a página de login
+    // header("Location: https://uftdevs.com.br/view/login.php");
+    // exit(); // Certifica-se de que o script é encerrado após o redirecionamento
+     }
+
+    public static function delete($obj) {
+    $pdo = new Connection();
+    $pdo = $pdo->Connect();
+    $tablename = "usuarios";
+    $check_query = "SELECT COUNT(*) FROM saldo WHERE usuario_id = ?";
+    $stmt_check = $pdo->prepare($check_query);
+    $stmt_check->bind_param("i", $obj);
+    $stmt_check->execute();
+    $stmt_check->bind_result($saldo_count);
+    $stmt_check->fetch();
+    $stmt_check->close();
+    if ($saldo_count > 0) {
+        $query_saldo = "DELETE FROM saldo WHERE usuario_id = ?";
+        $stmt_saldo = $pdo->prepare($query_saldo);
+        $stmt_saldo->bind_param("i", $obj);
+        $stmt_saldo->execute();
+        $stmt_saldo->close();
+    }
+    $query_usuario = "DELETE FROM $tablename WHERE usuario_id = ?";
+    $stmt_usuario = $pdo->prepare($query_usuario);
+    $stmt_usuario->bind_param("i", $obj);
+    $stmt_usuario->execute();
+    $stmt_usuario->close(); 
+    $pdo->close();
+    }
+
+
     // FUNÇAÕ CRIADA PELO LUIZ SOUSA
-    function editUser($id, $nome, $cpf, $perm, $email, $numMat){
+    public static function editUser($id, $nome, $cpf, $perm, $email, $numMat){
         $pdo = new Connection();
         $pdo = $pdo->Connect();
 
@@ -122,7 +177,39 @@ class Data{
         return false;
     }
     
-     function registerUser($nome, $cpf, $perm, $email, $numMat){
+    //FUNÇÃO CRIADA PARA A BUSCA DO PERFIL DO USUÁRIO, CRIADO POR CÁSSIO
+    
+    public function ProfileUser(){
+        $pdo = new Connection();
+        $pdo = $pdo->Connect();
+        
+        session_start ();
+        $aux = $_SESSION;
+    
+            if (isset($aux['jwt'])) {
+               try {
+                    $decode = JWT::decode ($aux,  new Key ("htsres", "HS256"));
+                    $cpf = $decode->cpf;
+                    
+                     $tablename = "usuarios";
+    
+                    $query = "SELECT nome, cpf, email, numMat FROM $tablename where usuarios.cpf = '$cpf';";
+                    $result = mysqli_query($pdo, $query);
+                    $pdo->close();
+                    return $result;
+                
+                
+                } catch (Exception $e) {
+                    echo "Erro: " . $e->getMessage();
+                }
+            } else {
+                echo "Token JWT não encontrado na variável de sessão.<br>";
+                var_dump("$_SESSION");
+            }
+   }
+
+   
+    public static function registerUser($nome, $cpf, $perm, $email, $numMat){
         $pdo = new Connection();
         $pdo = $pdo->Connect();
 
@@ -148,7 +235,12 @@ class Data{
         $query = "INSERT INTO $tablename (permissao, nome, cpf, email, senha, data_de_nascimento, data_criacao, data_atualizacao) VALUES ('$permissao','$nome', '$cpf', '$email', 'senha', '20-20-2020', NOW(), NOW())";
         $result = mysqli_query($pdo, $query);
         
-        if($result){
+        $busca = new Data();
+        $id = $busca->retrieveId($email);
+        
+        $query = "INSERT INTO saldo (usuario_id, saldo, data_criacao, data_atualizacao, movimentacao) VALUES ('$id', 0, NOW(),  NOW(),NULL)";
+        $result2 = mysqli_query($pdo, $query);
+        if($result && $result2){
             $pdo->close();
             return 1;
         }
@@ -175,7 +267,7 @@ class Data{
     }
     //Função feita por Luís Felipe Krause
     //Essa função faz a consulta do saldo do usuário no banco de dados
-    function tableExtract($cpf){
+    public function tableExtract($cpf){
         $pdo = new Connection();
         $pdo = $pdo->Connect();
         
@@ -238,7 +330,7 @@ class Data{
     }
     
     #Função para remover saldo do banco de dados - Feita por @XDougSa
-    function removeCash($cpf) {
+    public static function removeCash($cpf) {
         $pdo = new connection();
         $pdo = $pdo->connect();
     
@@ -289,7 +381,7 @@ class Data{
     $pdo->close();
     }
 
-    function retrievePassword($email) {
+    public function retrievePassword($email) {
         $pdo = new Connection();
         $conn = $pdo->Connect();
         
@@ -314,44 +406,13 @@ class Data{
 
         return $retrievedEmail;
     }
-
-     //FUNÇÃO CRIADA PARA A BUSCA DO PERFIL DO USUÁRIO, CRIADO POR CÁSSIO
-    
-    function ProfileUser(){
-        $pdo = new Connection();
-        $pdo = $pdo->Connect();
-        
-        session_start ();
-        $aux = $_SESSION;
-    
-            if (isset($aux['jwt'])) {
-               try {
-                    $decode = JWT::decode ($aux,  new Key ("htsres", "HS256"));
-                    $cpf = $decode->cpf;
-                    
-                     $tablename = "usuarios";
-    
-                    $query = "SELECT nome, cpf, email, numMat FROM $tablename where usuarios.cpf = '$cpf';";
-                    $result = mysqli_query($pdo, $query);
-                    $pdo->close();
-                    return $result;
-                
-                
-                } catch (Exception $e) {
-                    echo "Erro: " . $e->getMessage();
-                }
-            } else {
-                echo "Token JWT não encontrado na variável de sessão.<br>";
-                var_dump("$_SESSION");
-            }
-   }
     
     public function retrieveId($email) {
         $pdo = new Connection();
         $pdo = $pdo->Connect();
         
         // Use prepared statements to avoid SQL injection
-        $query = "SELECT email FROM usuarios WHERE email = '$email'";
+        $query = "SELECT usuario_id, email FROM usuarios WHERE email = '$email'";
 
         $result = mysqli_query($pdo, $query);
         $pdo->close();
@@ -369,6 +430,8 @@ class Data{
 
         return $linha['usuario_id'];
     }
+    
+    //função feita por Rafael de Oliveira Ribeiro e Patryck Henryck Moreira Silva.
     public static function bloquearCartao($usuario_id) {
         $pdo = new connection();
         $pdo = $pdo->connect();
@@ -395,9 +458,8 @@ class Data{
     
                 $resp = true;
                 return $resp;
-            } 
-         else {
-            $updateQuery = "UPDATE $tablenameUsuarios SET cartao_status = 0 WHERE usuario_id = ?";
+            } else {
+                $updateQuery = "UPDATE $tablenameUsuarios SET cartao_status = 0 WHERE usuario_id = ?";
     
                 $stmt = $pdo->prepare($updateQuery);
                 $stmt->bind_param("i", $usuario_id);
@@ -405,8 +467,8 @@ class Data{
     
                 $resp = true;
                 return $resp;
-        }
-        }else {
+            }
+        } else {
             echo 'Usuário não encontrado.';
             return false;
         }
@@ -414,5 +476,6 @@ class Data{
         $stmt->close();
         $pdo->close();
     }
+    
 }
 ?>
