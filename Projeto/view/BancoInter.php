@@ -1,5 +1,5 @@
 <?php
-    include ("./utils/session.php");
+    include_once '../vendor/autoload.php';
     require_once("./utils/jwt.php");
     include_once '../vendor/autoload.php';
     use \Firebase\JWT\JWT;
