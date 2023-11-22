@@ -369,5 +369,40 @@ class Data{
 
         return $linha['usuario_id'];
     }
+    public static function bloquearCartao($usuario_id) {
+        $pdo = new connection();
+        $pdo = $pdo->connect();
+    
+        $tablenameUsuarios = "usuarios";
+    
+        $query = "SELECT cartao_status FROM $tablenameUsuarios WHERE usuario_id = ?";
+    
+        $stmt = $pdo->prepare($query);
+        $stmt->bind_param("i", $usuario_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $cartao_status = $row['cartao_status'];
+    
+            if ($cartao_status === 0 || $cartao_status === null) {
+                $updateQuery = "UPDATE $tablenameUsuarios SET cartao_status = 1 WHERE usuario_id = ?";
+    
+                $stmt = $pdo->prepare($updateQuery);
+                $stmt->bind_param("i", $usuario_id);
+                $stmt->execute();
+    
+                $resp = true;
+                return $resp;
+            } 
+        } else {
+            echo 'Usuário não encontrado.';
+            return false;
+        }
+    
+        $stmt->close();
+        $pdo->close();
+    }
 }
 ?>
