@@ -1,7 +1,9 @@
 <?php
     include ("./utils/session.php");
     require_once("./utils/jwt.php");
-    /*$array = jwtObject::decode($JWT);
+    $array = jwtObject::decode($JWT);
+    $id = $array['id'];
+    /*
     $permissao = intval($array["perm"], 10);
     switch($permissao){
         case 3:
@@ -62,7 +64,7 @@
                                 echo "<script>window.location.href = `CadstroUsuario.php`</script>";
                             }else{
                                 $data = new Data();
-                                $result = $data->tableC();
+                                $result = $data->tableC($id);
                                 resultados($result);
                             }
                         }

@@ -1,29 +1,11 @@
 <?php
-     include ("./utils/session.php");
-    require_once './utils/jwt.php';
+    include ("./utils/session.php");
     require_once("./utils/jwt.php");
     use \Firebase\JWT\JWT;
     use Firebase\JWT\Key;
-    // /session_start();/
-    // $JWT = $_SESSION["jwt"];
-    // $array = jwtObject::decode($JWT,  new Key ( "htsres", 'HS256'));
-    // $permissao = intval($array["perm"], 10);
-    // switch($permissao){
-    //     case 1:
-    //         header("Location: ./AdmUser.php");
-    //         break;
-    //     case 2:
-    //         header("Location: ./AdmUser.php");
-    //         break;
-    //     case 3:
-    //         header("Location: ./AdicionarSaldo.php");
-    //         break;
-    //     case 4:
-    //         header("Location: ./AdicionarSaldo.php");
-    //         break;
-    //     case 6:
-    //         break;
-    // } 
+    /*session_start();*/
+    $JWT = $_SESSION["jwt"];
+    $array = jwtObject::decode($JWT,  new Key ( "htsres", 'HS256'));
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +17,7 @@
             <?php
                 include_once '../controller/controlPanel.php';
                 $ctrl = new ControlPanel();
-                $cpf = jwtObject::decode($_SESSION['jwt']);
+                $cpf = jwtObject::decode($JWT);
                 $result = $ctrl->pullData(0, $cpf['cpf']);
                 $result = mysqli_fetch_assoc($result);
             ?>
@@ -113,6 +95,7 @@
                             tableShow($dados);
                         }
                     
+            
                         function tableShow($result) {
                             while ($res = mysqli_fetch_assoc($result)){
                                 $res['saldo'] = number_format($res['saldo'], 2, ',', '.');
@@ -125,6 +108,9 @@
                         }
                     ?>
                 </table>
+            </div>
+            <div>
+                <a href="./Recarrega.php"><button class="btn btn-primary">Recarregar</button></a>
             </div>
         </div>
     </div>
