@@ -396,7 +396,17 @@ class Data{
                 $resp = true;
                 return $resp;
             } 
-        } else {
+         else {
+            $updateQuery = "UPDATE $tablenameUsuarios SET cartao_status = 0 WHERE usuario_id = ?";
+    
+                $stmt = $pdo->prepare($updateQuery);
+                $stmt->bind_param("i", $usuario_id);
+                $stmt->execute();
+    
+                $resp = true;
+                return $resp;
+        }
+        }else {
             echo 'Usuário não encontrado.';
             return false;
         }

@@ -172,4 +172,7 @@
         })
     }
 document.getElementById("btnDeleteUser").onclick = DeleteUser;
+document.getElementById("btnBloquearCartao").onclick = bloquearCartao;
+  
+  
 </script>
