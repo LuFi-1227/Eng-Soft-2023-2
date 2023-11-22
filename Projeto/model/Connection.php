@@ -2,10 +2,7 @@
 //Classe que será usada para instanciar conexão com banco de dados
 class Connection{
     public static function Connect(){
-        $host = "mysql";
-        $dbname = "u874279737_banco";//Insira aqui nome do banco de dados 
-        $user = "u874279737_cassiocoutinho"; //Isira aqui seu nome de usuário;
-        $password = "Linux_um@bost@2023"; //Insira aqui sua senha;
+        include "config/config.php";
         $conn = mysqli_connect($host, $user, $password, $dbname);
             // Check connection
             if (!$conn) {
