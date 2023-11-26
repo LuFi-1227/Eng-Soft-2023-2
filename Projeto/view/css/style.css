@@ -11,7 +11,8 @@ body {
     flex-direction: column;
     flex-wrap: nowrap;
 }
-.main-content, 
+
+.main-content,
 .profile-content {
     width: 450px;
     height: 500px;
@@ -27,7 +28,7 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.profile-content{
+.profile-content {
     width: 400px;
     height: 450px;
     display: flex;
@@ -39,7 +40,7 @@ body {
     margin: 0;
 }
 
-.profile-image img{
+.profile-image img {
     width: 100px;
     height: 100px;
     margin-top: 2%;
@@ -48,7 +49,7 @@ body {
 }
 
 .profile-data {
-    margin-top:2rem;
+    margin-top: 2rem;
 }
 
 .profile-data td {
@@ -70,15 +71,15 @@ body {
     align-items: center;
 }
 
-#return-btn{
-    margin-top:2%;
+#return-btn {
+    margin-top: 2%;
     margin-left: 92%;
-    background-color:#0047AB;
-    color:white;
-    font-size:20px;
+    background-color: #0047AB;
+    color: white;
+    font-size: 20px;
 }
 
-.image img{
+.image img {
     width: 160px;
     height: 160px;
     margin-top: 20%;
@@ -86,21 +87,21 @@ body {
     margin-bottom: 15%;
 }
 
-.main-itens{
+.main-itens {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 470px;
 }
 
-.textfield > label{
+.textfield > label {
     font-size: large;
     color: black;
     text-align: left;
     margin-right: 10px;
 }
 
-.textfield > input{
+.textfield > input {
     width: 400px;
     border: none;
     padding: 15px;
@@ -110,21 +111,21 @@ body {
     margin-bottom: 2%;
 }
 
-.textfield > input ::placeholder{
+.textfield > input ::placeholder {
     color: rgb(239, 222, 222);
 }
 
 #btn {
-   width: 100%;
-   margin: 5px;
+    width: 100%;
+    margin: 5px;
 }
 
-.head-itens{
+.head-itens {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 80px;
-    background-color:#0047AB;
+    background-color: #0047AB;
     box-shadow: 5px 5px 10px #888888;
     align-items: center;
 }
@@ -137,16 +138,16 @@ body {
 
 }
 
-.dropdown{
-   margin-left: 75%;
+.dropdown {
+    margin-left: 75%;
 }
 
-#dropdown-user{
+#dropdown-user {
     font-size: large;
     color: white;
 }
 
-.profile-content{
+.profile-content {
     width: 400px;
     height: 450px;
     display: flex;
@@ -158,7 +159,7 @@ body {
     box-shadow: 0px 10px 40px -12px #000000;
 }
 
-.profile-image img{
+.profile-image img {
     width: 150px;
     height: 150px;
     margin-top: 5%;
@@ -174,15 +175,15 @@ body {
     border-radius: 15px;
 }
 
-.profile-name{
+.profile-name {
     width: 120%;
     height: 15%;
     margin-left: -20px;
     margin-top: -15px;
-    background-color:#0047AB;
+    background-color: #0047AB;
 }
 
-.profile-name p{
+.profile-name p {
     font-size: large;
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 5%;
@@ -205,12 +206,12 @@ body {
     overflow: hidden;
 }
 
-.form-conteiner div{
+.form-conteiner div {
     margin: 10px;
     width: 150%;
 }
 
-.search-form{
+.search-form {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -221,25 +222,26 @@ body {
     margin-bottom: 10px;
 }
 
-.forms-itens{
-    margin:0;
+.forms-itens {
+    margin: 0;
 }
+
 .forms-itens form {
     height: 100%;
     display: flex;
     flex-direction: row;
-    align-items:flex-start;
+    align-items: flex-start;
 }
 
 .forms-itens input {
     width: 400px;
 }
 
-.form-submit select{
-   margin-top: 40px;
+.form-submit select {
+    margin-top: 40px;
 }
 
-.form-submit  button {
+.form-submit button {
     margin-top: 60px;
     margin-left: 50vh;
 }
@@ -257,7 +259,7 @@ body {
     margin-left: 5%;
 }
 
-.search-itens input{
+.search-itens input {
     width: 50vh;
 }
 
@@ -267,12 +269,13 @@ body {
     padding: 5px;
 }
 
-.table-content{
-  width: 100%;
-  height: max-content;
-  margin-left: 0px;
-  margin-bottom: 20vh;
+.table-content {
+    width: 100%;
+    height: max-content;
+    margin-left: 0px;
+    margin-bottom: 20vh;
 }
+
 .table-content table {
     margin-left: 2%;
     width: 90%;
@@ -281,26 +284,26 @@ body {
 }
 
 .table-content td {
-  font-size: large;
+    font-size: large;
 }
 
 .table-content th {
     border: 1px inset #aeaeaed8;
     padding: 5px;
-    text-align: left; 
+    text-align: left;
 }
 
 .table-content td {
     border: 1px solid #aeaeaed8;
     padding: 5px;
-    text-align: left;   
+    text-align: left;
 }
 
 /*tr:nth-child(even) {*/
 /*    background-color: #f2f2f2;*/
 /*}*/
 
-.table-icon-width{
+.table-icon-width {
     width: 20%;
 }
 
@@ -315,11 +318,13 @@ body {
 #icon-pencil {
     color: blue;
 }
+
 #icon-trash {
     color: red;
-    border:none;
+    border: none;
     background-color: white;
 }
+
 /*Requisito: Exibir saldo @LuisFelipeKrause*/
 .main-extrato {
     display: flex;
@@ -395,34 +400,34 @@ body {
 }
 
 /*Requisito:  Catraca @PHmore*/
-.cobrar-itens
-{
+.cobrar-itens {
     width: 25%;
     margin-top: 2%;
     margin-left: 2%;
-    
+
 }
 
-.cobrar-itens label
-{
-    font-size:x-large;
-    color:#0047AB;
+.cobrar-itens label {
+    font-size: x-large;
+    color: #0047AB;
 }
 
 footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    position:fixed;
+    position: fixed;
     display: flex;
     align-items: center;
     height: 65px;
-    background-color:  #dfdfdf;
+    background-color: #dfdfdf;
 }
-.footer-itens{
+
+.footer-itens {
     margin-left: 45%;
     margin-right: 25%;
 }
+
 .footer img {
     margin: 10px;
     width: 40px;

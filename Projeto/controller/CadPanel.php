@@ -1,34 +1,35 @@
 <?php
-if(isset($_POST['enter'])){
-    if(isset($_POST['name']) && !empty($_POST['name'])){
+if (isset($_POST['enter'])) {
+    if (isset($_POST['name']) && !empty($_POST['name'])) {
         $nome = $_POST['name'];
-        if(isset($_POST['CPF']) && !empty($_POST['CPF'])){
+        if (isset($_POST['CPF']) && !empty($_POST['CPF'])) {
             $cpf = $_POST['CPF'];
-            if(isset($_POST['email']) && !empty($_POST['email'])){
+            if (isset($_POST['email']) && !empty($_POST['email'])) {
                 $email = $_POST['email'];
-                if(isset($_POST['optione']) && !empty($_POST['optione']) && strcmp($_POST['optione'], "Permissão")!=0){
+                if (isset($_POST['optione']) && !empty($_POST['optione']) && strcmp($_POST['optione'],
+                        "Permissão") != 0) {
                     $option = $_POST['optione'];
-                    if(isset($_POST['numMat']) && !empty($_POST['numMat'])){
+                    if (isset($_POST['numMat']) && !empty($_POST['numMat'])) {
                         $numMat = $_POST['numMat'];
-                    }else{
+                    } else {
                         $numMat = null;
                     }
                     include_once '../model/Data.php';
                     $data = new Data();
-                    if($data->registerUser($nome, $cpf, $option, $email, $numMat)==true){
+                    if ($data->registerUser($nome, $cpf, $option, $email, $numMat) == true) {
                         header("Location: ../view/AdmUser.php");
                         exit();
                     }
-                }else{
+                } else {
                     echo "Selecione permissão do usuário";
                 }
-            }else{
+            } else {
                 echo "email do usuário não informado";
             }
-        }else{
+        } else {
             echo "CPF do usuário não informado";
         }
-    }else{
+    } else {
         echo "Nome de usuário não informado";
     }
 }

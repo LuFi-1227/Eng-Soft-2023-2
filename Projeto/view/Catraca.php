@@ -49,37 +49,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
-    <?php include "./components/header.php"?>
+<?php include "./components/header.php" ?>
 <body>
-    <div class="main">
-        <section>
-            <div class ="cobrar-itens">
-                <form class="cobrar-form" method="post" action="" id="cobrarForm">
-                    <div class="mb-3 cobrar-input">
-                        <label for="" class="form-label">Buscar</label>
-                        <input type="text" name="CPF" class="form-control" id="" aria-describedby="">
-                    </div>
+<div class="main">
+    <section>
+        <div class="cobrar-itens">
+            <form class="cobrar-form" method="post" action="" id="cobrarForm">
+                <div class="mb-3 cobrar-input">
+                    <label for="" class="form-label">Buscar</label>
+                    <input type="text" name="CPF" class="form-control" id="" aria-describedby="">
+                </div>
 
-                    <div class="cobrar-btn">
-                        <div class="btn-group">
-                            <button type="submit" class="btn btn-primary btn-lg" id="btn-Cobrar" name="Cobrar">Cobrar</button>
-                        </div>
+                <div class="cobrar-btn">
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary btn-lg" id="btn-Cobrar" name="Cobrar">Cobrar
+                        </button>
                     </div>
-                </form>
-            </div>
-            <?php
-            if (isset($_SESSION['mensagem'])) {
-                echo '<div class="mensagem">' . $_SESSION['mensagem'] . '</div>';
-                unset($_SESSION['mensagem']); // Limpa a mensagem
-            }
-            ?>
-        </section>
-    </div>
-    <?php include "./components/footer.html"?>
+                </div>
+            </form>
+        </div>
+        <?php
+        if (isset($_SESSION['mensagem'])) {
+            echo '<div class="mensagem">' . $_SESSION['mensagem'] . '</div>';
+            unset($_SESSION['mensagem']); // Limpa a mensagem
+        }
+        ?>
+    </section>
+</div>
+<?php include "./components/footer.html" ?>
 </body>
 <script src="https://kit.fontawesome.com/4bfe745599.js" crossorigin="anonymous"></script>
 <script>
-     function logout(){
+    function logout() {
         Swal.fire({
             title: 'Deseja sair?',
             icon: 'warning',
@@ -88,9 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Confirmar'
         }).then((result) => {
-          if (result.isConfirmed) {
-            window.location.href = '../controller/deslog.php';
-          }
+            if (result.isConfirmed) {
+                window.location.href = '../controller/deslog.php';
+            }
         })
     }
 </script>

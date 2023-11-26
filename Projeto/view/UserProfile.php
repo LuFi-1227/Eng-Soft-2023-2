@@ -1,6 +1,5 @@
 <?php
      include ("./utils/session.php");
-    require_once './utils/jwt.php';
     require_once("./utils/jwt.php");
     use \Firebase\JWT\JWT;
     use Firebase\JWT\Key;
@@ -126,7 +125,8 @@
             </div>
         </div>
     </div>
-    <?php include "./components/footer.html"?>
+</div>
+<?php include "./components/footer.html" ?>
 </body>
 <script src="https://kit.fontawesome.com/4bfe745599.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -1,7 +1,7 @@
 <?php
-include_once("../controller/controlPanel.php");
+include_once("../controller/ControlPanel.php");
 include_once '../vendor/autoload.php';
-include_once ("./utils/validador.php");
+include_once("../view/utils/validador.php");
 
 use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -56,15 +56,15 @@ if ($_POST) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../view/css/style.css">
 </head>
-<?php include "./components/header.php" ?>
+
 <body>
 <div class="main">
     <div class="main-content">
         <div class="main-container">
             <div class="image">
-                <img src="./img/brasao_uft.webp"
+                <img src="../view/img/brasao_uft.webp"
                      alt="Logo da Universidade Federal do Tocantins">
             </div>
             <div class="main-itens">
@@ -85,7 +85,7 @@ if ($_POST) {
         </div>
     </div>
 </div>
-<?php include "./components/footer.html" ?>
+<?php include "../view/components/footer.html" ?>
 </body>
 </html>
 
@@ -93,16 +93,17 @@ if ($_POST) {
 function fazerLogin($cpf, $password)
 {
     // inicializa um objeto da control panel
-    if (validador::validaCPF($cpf)) {
+    $flag = validador::validaCPF($cpf);
+    if ($flag) {
         $controlPanel = new ControlPanel ();
         if (!$controlPanel->login($cpf, $password)) {
             echo("<script language = 'javascript'> alert ('Usuário ou senha incorretos') </script>");
-            return -1;
+            return 0;
         }
         return 1;
     } else {
         echo("<script>alert('CPF inválido')</script>");
-        return -2;
+        return 0;
     }
 }
 ?>
