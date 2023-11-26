@@ -1,34 +1,37 @@
-<?php 
+<?php
 //Classe que será utilizada para o envio de dados para o painel de controle
 require_once "../vendor/autoload.php";
 require_once "../model/Connection.php";
+
 use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-class Data{
-    
-    function login($cpf, $pass){
-        
+class Data
+{
+
+    function login($cpf, $pass)
+    {
+
         // cria conexão, constrói a query e fecha a conexão
-        
+
         $pdo = new Connection();
         $pdo = $pdo->Connect();
         $query = "SELECT * FROM usuarios WHERE CPF = '$cpf' and senha = '$pass'";
         $result = mysqli_query($pdo, $query);
         $pdo->close();
-        
+
         // se o resultado da busca no banco de dados estiver vazio ou diferente de 1 retorna 0 (falso)
-        if(empty($result) || mysqli_num_rows($result) != 1){
+        if (empty($result) || mysqli_num_rows($result) != 1) {
             http_response_code(401);
             return 0;
         }
-        
+
         // se o if não ocorreu um fetch assoc é feito para transformar a resposta do banco de dados numa string
 
         $linha = mysqli_fetch_assoc($result);
-        
+
         // passando os dados juntos para o jwt para ele transformar tudo num hash
-        
+
         $payload = [
             "id" => $linha["usuario_id"],
             "nome" => $linha["nome"],
@@ -36,18 +39,20 @@ class Data{
             "perm" => $linha ["permissao"],
         ];
         $encode = JWT::encode($payload, "htsres", 'HS256');
-        
+
         // inicia uma sessão e guarda o hash do jwt nela
-        
-        session_start ();
+
+        session_start();
         $_SESSION["jwt"] = $encode;
-        
+
         // se tudo deu certo retorna 1 (true)
-        
+
         return 1;
     }
+
     // FUNÇÕES CRIADAS LUIZ SOUZA
-    function table($cpf){
+    function table($cpf)
+    {
         $pdo = new Connection();
         $pdo = $pdo->Connect();
 
@@ -58,9 +63,10 @@ class Data{
         $pdo->close();
         return $result;
     }
-    
-    
-     public function tableId($id){ 
+
+
+    public function tableId($id)
+    {
         $pdo = new Connection();
         $pdo = $pdo->Connect();
 
@@ -71,8 +77,9 @@ class Data{
         $pdo->close();
         return $result;
     }
-    
-       public function tableC($id){
+
+    public function tableC($id)
+    {
         $pdo = new Connection();
         $pdo = $pdo->Connect();
 
@@ -83,8 +90,9 @@ class Data{
         $pdo->close();
         return $result;
     }
-    
-         function delete($obj){
+
+    function delete($obj)
+    {
         $pdo = new Connection();
         $pdo = $pdo->Connect();
 
@@ -94,80 +102,84 @@ class Data{
         $result = mysqli_query($pdo, $query);
         $pdo->close();
     }
+
     // FUNÇAÕ CRIADA PELO LUIZ SOUSA
-    function editUser($id, $nome, $cpf, $perm, $email, $numMat){
+    function editUser($id, $nome, $cpf, $perm, $email, $numMat)
+    {
         $pdo = new Connection();
         $pdo = $pdo->Connect();
 
         $tablename = "usuarios";
 
-        if($perm == 1){
+        if ($perm == 1) {
             $permissao = 2;
-        }else{
-            if($perm == 3){
+        } else {
+            if ($perm == 3) {
                 $permissao = 3;
-            } else{
+            } else {
                 $permissao = 5;
             }
         }
-        
+
         $query = "UPDATE $tablename set permissao = '$permissao', nome = '$nome', cpf = '$cpf', email = '$email', data_atualizacao = NOW() where usuario_id = '$id'";
 
         $result = mysqli_query($pdo, $query);
-        
-        if($result){
+
+        if ($result) {
             $pdo->close();
             return true;
         }
         return false;
     }
-    
-     function registerUser($nome, $cpf, $perm, $email, $numMat){
+
+    function registerUser($nome, $cpf, $perm, $email, $numMat)
+    {
         $pdo = new Connection();
         $pdo = $pdo->Connect();
 
         $tablename = "usuarios";
-        
-        if($perm == 1){
+
+        if ($perm == 1) {
             $permissao = 2;
-        }else{
-            if($perm == 3){
+        } else {
+            if ($perm == 3) {
                 $permissao = 3;
-            } else{
+            } else {
                 $permissao = 5;
             }
         }
         $busca = new Data();
         $var = $busca->table($cpf);
-        
+
         //Deixa a porra do &&
-        if(!empty($var) && mysqli_num_rows($var) != 0){
+        if (!empty($var) && mysqli_num_rows($var) != 0) {
             return -1;//Se houver algum cpf igual ao cpf da função já cadastrado, retorna -1;
         }
-        
+
         $query = "INSERT INTO $tablename (permissao, nome, cpf, email, senha, data_de_nascimento, data_criacao, data_atualizacao) VALUES ('$permissao','$nome', '$cpf', '$email', 'senha', '20-20-2020', NOW(), NOW())";
         $result = mysqli_query($pdo, $query);
-        
-        if($result){
+
+        if ($result) {
             $pdo->close();
             return 1;
         }
         return 0;
     }
-    
-    public static function editPass($senha, $id){
+
+    public static function editPass($senha, $id)
+    {
         $pdo = new Connection();
         $pdo = $pdo->Connect();
 
         $tablename = "usuarios";
-        
+
         //Deixa a porra do &&
-        
+
         $query = "UPDATE $tablename set senha = '$senha', data_atualizacao = NOW() where usuario_id = '$id'";
 
         $result = mysqli_query($pdo, $query);
-        
-        if($result){
+
+        if ($result) {
             $pdo->close();
             return true;
         }
@@ -175,82 +187,86 @@ class Data{
     }
     //Função feita por Luís Felipe Krause
     //Essa função faz a consulta do saldo do usuário no banco de dados
-    function tableExtract($cpf){
+    function tableExtract($cpf)
+    {
         $pdo = new Connection();
         $pdo = $pdo->Connect();
-        
-        $result = mysqli_query($pdo, "SELECT saldo.saldo, usuarios.data_atualizacao FROM usuarios INNER JOIN saldo ON usuarios.usuario_id = saldo.usuario_id WHERE usuarios.cpf = '$cpf'");
-        
+
+        $result = mysqli_query($pdo,
+            "SELECT saldo.saldo, usuarios.data_atualizacao FROM usuarios INNER JOIN saldo ON usuarios.usuario_id = saldo.usuario_id WHERE usuarios.cpf = '$cpf'");
+
         $pdo->close();
 
         return $result;
     }
 
-    
+
     //função feita por Rafael de Oliveira Ribeiro.
     //essa função faz a alteração do saldo do usuario adicionando mais saldo.
-    function adicionarSaldo($cpf, $numeroRefeicoes) {
+    function adicionarSaldo($cpf, $numeroRefeicoes)
+    {
         $pdo = new connection();
         $pdo = $pdo->connect();
-    
+
         $tablenameSaldo = "saldo";
         $tablenameUsuarios = "usuarios";
-    
+
         // Consulta para obter o saldo e CPF do usuário
         $query = "SELECT $tablenameSaldo.saldo, $tablenameUsuarios.cpf 
                   FROM $tablenameSaldo
                   INNER JOIN $tablenameUsuarios ON $tablenameSaldo.usuario_id = $tablenameUsuarios.usuario_id
                   WHERE $tablenameUsuarios.cpf = ?";
-    
+
         $stmt = $pdo->prepare($query);
         $stmt->bind_param("s", $cpf);
         $stmt->execute();
         $result = $stmt->get_result();
-    
+
         if ($result && $result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $saldo = $row['saldo'];
-    
+
             // Calcula o valor a ser adicionado com base no número de refeições
             $valorAdicionar = $numeroRefeicoes * 2.5;
-    
+
             $novoSaldo = $saldo + $valorAdicionar;
-    
+
             // Atualiza o saldo na tabela 'saldo'
             $updateQuery = "UPDATE $tablenameSaldo
                             INNER JOIN $tablenameUsuarios ON $tablenameSaldo.usuario_id = $tablenameUsuarios.usuario_id
                             SET $tablenameSaldo.saldo = ?
                             WHERE $tablenameUsuarios.cpf = ?";
-    
+
             $stmt = $pdo->prepare($updateQuery);
             $stmt->bind_param("is", $novoSaldo, $cpf);
             $stmt->execute();
-    
+
             $resp = true;
             return $resp;
         } else {
             $resp = false;
             return $resp;
         }
-    
+
         $stmt->close();
         $pdo->close();
     }
-    
+
     #Função para remover saldo do banco de dados - Feita por @XDougSa
-    function removeCash($cpf) {
+    function removeCash($cpf)
+    {
         $pdo = new connection();
         $pdo = $pdo->connect();
-    
+
         $tablenameSaldo = "saldo";
         $tablenameUsuarios = "usuarios";
-    
+
         // Consulta para obter o saldo e CPF do usuário
         $query = "SELECT $tablenameSaldo.saldo, $tablenameUsuarios.cpf 
                   FROM $tablenameSaldo
                   INNER JOIN $tablenameUsuarios ON $tablenameSaldo.usuario_id = $tablenameUsuarios.usuario_id
                   WHERE $tablenameUsuarios.cpf = ?";
-    
+
         $stmt = $pdo->prepare($query);
         $stmt->bind_param("s", $cpf);
         $stmt->execute();
@@ -260,20 +276,20 @@ class Data{
         if ($result && $result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $saldo = $row['saldo'];
-    
+
             // Defina o valor da movimentação a ser removida
             $movimentacao = 2.5;
-    
+
             // Verifica se o saldo é suficiente
             if ($saldo >= $movimentacao) {
                 $saldo = $saldo - $movimentacao;
-    
+
                 // Atualiza o saldo na tabela 'saldo'
                 $updateQuery = "UPDATE $tablenameSaldo
                                 INNER JOIN $tablenameUsuarios ON $tablenameSaldo.usuario_id = $tablenameUsuarios.usuario_id
                                 SET $tablenameSaldo.saldo = ?
                                 WHERE $tablenameUsuarios.cpf = ?";
-    
+
                 $stmt = $pdo->prepare($updateQuery);
                 $stmt->bind_param("is", $saldo, $cpf);
                 $stmt->execute();
@@ -285,14 +301,15 @@ class Data{
             }
         }
 
-    $stmt->close();
-    $pdo->close();
+        $stmt->close();
+        $pdo->close();
     }
 
-    function retrievePassword($email) {
+    function retrievePassword($email)
+    {
         $pdo = new Connection();
         $conn = $pdo->Connect();
-        
+
         // Use prepared statements to avoid SQL injection
         $query = "SELECT email FROM usuarios WHERE email = ?";
         $stmt = $conn->prepare($query);
@@ -315,53 +332,55 @@ class Data{
         return $retrievedEmail;
     }
 
-     //FUNÇÃO CRIADA PARA A BUSCA DO PERFIL DO USUÁRIO, CRIADO POR CÁSSIO
-    
-    function ProfileUser(){
+    //FUNÇÃO CRIADA PARA A BUSCA DO PERFIL DO USUÁRIO, CRIADO POR CÁSSIO
+
+    function ProfileUser()
+    {
         $pdo = new Connection();
         $pdo = $pdo->Connect();
-        
-        session_start ();
+
+        session_start();
         $aux = $_SESSION;
-    
-            if (isset($aux['jwt'])) {
-               try {
-                    $decode = JWT::decode ($aux,  new Key ("htsres", "HS256"));
-                    $cpf = $decode->cpf;
-                    
-                     $tablename = "usuarios";
-    
-                    $query = "SELECT nome, cpf, email, numMat FROM $tablename where usuarios.cpf = '$cpf';";
-                    $result = mysqli_query($pdo, $query);
-                    $pdo->close();
-                    return $result;
-                
-                
-                } catch (Exception $e) {
-                    echo "Erro: " . $e->getMessage();
-                }
-            } else {
-                echo "Token JWT não encontrado na variável de sessão.<br>";
-                var_dump("$_SESSION");
+
+        if (isset($aux['jwt'])) {
+            try {
+                $decode = JWT::decode($aux, new Key ("htsres", "HS256"));
+                $cpf = $decode->cpf;
+
+                $tablename = "usuarios";
+
+                $query = "SELECT nome, cpf, email, numMat FROM $tablename where usuarios.cpf = '$cpf';";
+                $result = mysqli_query($pdo, $query);
+                $pdo->close();
+                return $result;
+
+
+            } catch (Exception $e) {
+                echo "Erro: " . $e->getMessage();
             }
-   }
-    
-    public function retrieveId($email) {
+        } else {
+            echo "Token JWT não encontrado na variável de sessão.<br>";
+            var_dump("$_SESSION");
+        }
+    }
+
+    public function retrieveId($email)
+    {
         $pdo = new Connection();
         $pdo = $pdo->Connect();
-        
+
         // Use prepared statements to avoid SQL injection
         $query = "SELECT email FROM usuarios WHERE email = '$email'";
 
         $result = mysqli_query($pdo, $query);
         $pdo->close();
-        
+
         // se o resultado da busca no banco de dados estiver vazio ou diferente de 1 retorna 0 (falso)
-        if(empty($result) || mysqli_num_rows($result) != 1){
+        if (empty($result) || mysqli_num_rows($result) != 1) {
             http_response_code(401);
             return 0;
         }
-        
+
         // se o if não ocorreu um fetch assoc é feito para transformar a resposta do banco de dados numa string
 
         $linha = mysqli_fetch_assoc($result);
@@ -370,4 +389,5 @@ class Data{
         return $linha['usuario_id'];
     }
 }
+
 ?>
