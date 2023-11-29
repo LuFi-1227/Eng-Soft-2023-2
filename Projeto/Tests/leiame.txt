@@ -1,0 +1,18 @@
+Teste unitário 1: by LuFi-1227:
+
+*Comando para usar o phpUnit:
+php ../vendor/bin/phpunit --color loginTest.php
+
+**Não apagar a página loginToTest
+**Não apagar Testador de login - Página1.csv
+
+*No arquivo Testador de login - Página1.csv, os dados estão assim:
+CPF, resultado esperado
+23819100651,0
+
+**Se o validador dizer "CPF inválido" ou se o login falhar, loginToTest retorna 0;
+**Se o validador dizer "CPF inválido", login retorna -1, se o login falhar, login retorna -1,
+ senão, retorna 1 (quer dizer que o login deu certo);
+
+** em view/utils/validador, temos um validador de cpf cujas regras se encontram na fonte, localizada no
+comentário do arquivo.
